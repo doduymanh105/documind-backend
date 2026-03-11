@@ -1,0 +1,11 @@
+# Môi trường ảo
+venv/
+env/
+
+# File chứa biến môi trường (Bảo mật)
+.env
+
+# Các file rác do Python và Mac sinh ra
+__pycache__/
+*.pyc
+.DS_Store
