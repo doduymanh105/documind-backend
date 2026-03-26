@@ -1,0 +1,16 @@
+{
+  "chunk-60f57cccae9d35aaf74633616993091b": {
+    "tokens": 267,
+    "content": "Since you are exploring ways to manage your workspace more efficiently on Windows, here is a \nconcise guide to mastering Virtual Desktops using only your keyboard: \nOptimizing Workflow with Virtual Desktops Virtual Desktops are a powerful Windows feature \nthat allows you to create multiple independent workspaces on a single physical monitor. Instead \nof letting dozens of browser tabs, coding tools, and design documents clutter one screen, you \ncan categorize them by purpose. For instance, you can dedicate one desktop to coding with VS \nCode and Terminal, while keeping another specifically for Figma UI designs or project \nmanagement tools. This separation minimizes visual distraction and helps your brain focus more \neffectively on one specific cluster of tasks at a time. \nMastering Keyboard-Only Navigation The key to mastering these spaces without a touchpad \nlies in memorizing the core trio of shortcuts using the Windows and Ctrl keys. You can instantly \nspawn a new environment with Windows + Ctrl + D and glide between workflows using the \nArrow keys. When a session is finished, pressing Windows + Ctrl + F4 closes the current \ndesktop and automatically merges any open applications into the adjacent one, ensuring your \nprogress is never lost. Transitioning to a keyboard-centric navigation style not only speeds up \nyour operations but also creates a more seamless, professional development experience.",
+    "chunk_order_index": 0,
+    "full_doc_id": "doc-60f57cccae9d35aaf74633616993091b",
+    "file_path": "unknown_source",
+    "llm_cache_list": [
+      "default:extract:bde6caed57b33891855ea12b20b78732",
+      "default:extract:fb25d005ec642376c9524b3d86d8d7c3"
+    ],
+    "create_time": 1774514965,
+    "update_time": 1774515030,
+    "_id": "chunk-60f57cccae9d35aaf74633616993091b"
+  }
+}

@@ -1,0 +1,928 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d13" for="edge" attr.name="truncate" attr.type="string" />
+  <key id="d12" for="edge" attr.name="created_at" attr.type="long" />
+  <key id="d11" for="edge" attr.name="file_path" attr.type="string" />
+  <key id="d10" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d9" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d8" for="edge" attr.name="description" attr.type="string" />
+  <key id="d7" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d6" for="node" attr.name="truncate" attr.type="string" />
+  <key id="d5" for="node" attr.name="created_at" attr.type="long" />
+  <key id="d4" for="node" attr.name="file_path" attr.type="string" />
+  <key id="d3" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d2" for="node" attr.name="description" attr.type="string" />
+  <key id="d1" for="node" attr.name="entity_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_id" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="Java">
+      <data key="d0">Java</data>
+      <data key="d1">concept</data>
+      <data key="d2">Java is a popular, high-level, object-oriented programming language widely used for building applications, known for its platform independence.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Sun Microsystems">
+      <data key="d0">Sun Microsystems</data>
+      <data key="d1">organization</data>
+      <data key="d2">Sun Microsystems developed the Java programming language.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Oracle">
+      <data key="d0">Oracle</data>
+      <data key="d1">organization</data>
+      <data key="d2">Oracle currently maintains the Java programming language.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Java Virtual Machine (JVM)">
+      <data key="d0">Java Virtual Machine (JVM)</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Java Virtual Machine (JVM) is a runtime environment that allows Java programs to run on any device, enabling platform independence.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Platform Independence">
+      <data key="d0">Platform Independence</data>
+      <data key="d1">concept</data>
+      <data key="d2">Platform independence is a main advantage of Java, meaning Java programs can run on any device with a JVM.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Write Once, Run Anywhere">
+      <data key="d0">Write Once, Run Anywhere</data>
+      <data key="d1">concept</data>
+      <data key="d2">Write Once, Run Anywhere is a principle that Java follows, describing its platform independence.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Object-Oriented Programming (OOP)">
+      <data key="d0">Object-Oriented Programming (OOP)</data>
+      <data key="d1">concept</data>
+      <data key="d2">Object-Oriented Programming (OOP) is a programming paradigm based on the concept of objects, which Java is based on.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Encapsulation">
+      <data key="d0">Encapsulation</data>
+      <data key="d1">concept</data>
+      <data key="d2">Encapsulation is a key concept of Object-Oriented Programming in Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504221</data>
+      <data key="d6" />
+    </node>
+    <node id="Inheritance">
+      <data key="d0">Inheritance</data>
+      <data key="d1">concept</data>
+      <data key="d2">Inheritance is a key concept of Object-Oriented Programming in Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Polymorphism">
+      <data key="d0">Polymorphism</data>
+      <data key="d1">concept</data>
+      <data key="d2">Polymorphism is a key concept of Object-Oriented Programming in Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Abstraction">
+      <data key="d0">Abstraction</data>
+      <data key="d1">concept</data>
+      <data key="d2">Abstraction is a key concept of Object-Oriented Programming in Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Web Development">
+      <data key="d0">Web Development</data>
+      <data key="d1">concept</data>
+      <data key="d2">Web Development is an application area where Java is widely used.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Mobile Applications">
+      <data key="d0">Mobile Applications</data>
+      <data key="d1">concept</data>
+      <data key="d2">Mobile Applications is an application area where Java is widely used.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Android Apps">
+      <data key="d0">Android Apps</data>
+      <data key="d1">concept</data>
+      <data key="d2">Android apps are a type of mobile application primarily developed using Java or Kotlin.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Kotlin">
+      <data key="d0">Kotlin</data>
+      <data key="d1">concept</data>
+      <data key="d2">Kotlin is a programming language used for developing Android apps, alongside Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Enterprise Systems">
+      <data key="d0">Enterprise Systems</data>
+      <data key="d1">concept</data>
+      <data key="d2">Enterprise Systems are backend systems where Java is used due to its stability, security, and scalability.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504222</data>
+      <data key="d6" />
+    </node>
+    <node id="Large Community">
+      <data key="d0">Large Community</data>
+      <data key="d1">concept</data>
+      <data key="d2">A large developer community is an advantage that makes Java a preferred language.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="Rich Libraries">
+      <data key="d0">Rich Libraries</data>
+      <data key="d1">concept</data>
+      <data key="d2">Rich libraries are an advantage of Java, providing extensive functionalities.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="Strong Security Features">
+      <data key="d0">Strong Security Features</data>
+      <data key="d1">concept</data>
+      <data key="d2">Strong security features are an advantage of Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="Automatic Memory Management">
+      <data key="d0">Automatic Memory Management</data>
+      <data key="d1">concept</data>
+      <data key="d2">Automatic memory management is an advantage of Java, implemented through garbage collection.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="Garbage Collection">
+      <data key="d0">Garbage Collection</data>
+      <data key="d1">method</data>
+      <data key="d2">Garbage collection is a method used in Java for automatic memory management, reducing the risk of memory leaks.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="C">
+      <data key="d0">C</data>
+      <data key="d1">concept</data>
+      <data key="d2">C is a programming language that Java can be slower than.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="C++">
+      <data key="d0">C++</data>
+      <data key="d1">concept</data>
+      <data key="d2">C++ is a programming language that Java can be slower than.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="Python">
+      <data key="d0">Python</data>
+      <data key="d1">concept</data>
+      <data key="d2">Python is a newer programming language with less verbose syntax compared to Java.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504223</data>
+      <data key="d6" />
+    </node>
+    <node id="Global Tech Index">
+      <data key="d0">Global Tech Index</data>
+      <data key="d1">concept</data>
+      <data key="d2">The Global Tech Index tracks the performance of major technology stocks and experienced a 3.4% decline today.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Gold Futures">
+      <data key="d0">Gold Futures</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Gold futures rose by 1.5%, indicating increased investor interest in safe-haven assets.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Crude Oil">
+      <data key="d0">Crude Oil</data>
+      <data key="d1">naturalobject</data>
+      <data key="d2">Crude oil prices rose to $87.60 per barrel due to supply constraints and strong demand.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Market Selloff">
+      <data key="d0">Market Selloff</data>
+      <data key="d1">event</data>
+      <data key="d2">Market selloff refers to the significant decline in stock values due to investor concerns over interest rates and regulations.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Federal Reserve Policy Announcement">
+      <data key="d0">Federal Reserve Policy Announcement</data>
+      <data key="d1">event</data>
+      <data key="d2">The Federal Reserve's upcoming policy announcement is expected to impact investor confidence and market stability.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="3.4% Decline">
+      <data key="d0">3.4% Decline</data>
+      <data key="d1">data</data>
+      <data key="d2">The Global Tech Index experienced a 3.4% decline in midday trading.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Stock Markets">
+      <data key="d0">Stock Markets</data>
+      <data key="d1">concept</data>
+      <data key="d2">Financial markets where stocks are bought and sold, currently facing a downturn.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Market Downturn">
+      <data key="d0">Market Downturn</data>
+      <data key="d1">event</data>
+      <data key="d2">A period of significant decline in stock market performance.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504224</data>
+      <data key="d6" />
+    </node>
+    <node id="Tech Giants">
+      <data key="d0">Tech Giants</data>
+      <data key="d1">organization</data>
+      <data key="d2">Large technology companies that experienced significant stock declines.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Interest Rates">
+      <data key="d0">Interest Rates</data>
+      <data key="d1">concept</data>
+      <data key="d2">The cost of borrowing money, whose rising trend concerned investors.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Regulatory Uncertainty">
+      <data key="d0">Regulatory Uncertainty</data>
+      <data key="d1">concept</data>
+      <data key="d2">Unpredictability regarding future government regulations, contributing to investor concerns.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Quarterly Earnings">
+      <data key="d0">Quarterly Earnings</data>
+      <data key="d1">data</data>
+      <data key="d2">A company's financial results reported every three months, with Nexon Technologies reporting lower-than-expected figures.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Oil Prices">
+      <data key="d0">Oil Prices</data>
+      <data key="d1">concept</data>
+      <data key="d2">The market value of crude oil, which has been rising and benefiting Omega Energy.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Commodity Markets">
+      <data key="d0">Commodity Markets</data>
+      <data key="d1">concept</data>
+      <data key="d2">Financial markets where raw materials like gold and oil are traded, currently reflecting mixed sentiment.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Supply Constraints">
+      <data key="d0">Supply Constraints</data>
+      <data key="d1">concept</data>
+      <data key="d2">Limitations on the availability of goods or resources, supporting crude oil prices.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Strong Demand">
+      <data key="d0">Strong Demand</data>
+      <data key="d1">concept</data>
+      <data key="d2">A high level of consumer or industrial desire for a product, supporting crude oil prices.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Financial Experts">
+      <data key="d0">Financial Experts</data>
+      <data key="d1">person</data>
+      <data key="d2">Professionals who monitor and analyze financial markets and economic indicators.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Federal Reserve">
+      <data key="d0">Federal Reserve</data>
+      <data key="d1">organization</data>
+      <data key="d2">The central banking system of the United States, whose policy moves are closely watched.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Rate Hikes">
+      <data key="d0">Rate Hikes</data>
+      <data key="d1">concept</data>
+      <data key="d2">Increases in interest rates, speculated to be a potential move by the Federal Reserve.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504225</data>
+      <data key="d6" />
+    </node>
+    <node id="Investor Confidence">
+      <data key="d0">Investor Confidence</data>
+      <data key="d1">concept</data>
+      <data key="d2">The degree of optimism or pessimism among investors, influenced by economic factors and policy announcements.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="Market Stability">
+      <data key="d0">Market Stability</data>
+      <data key="d1">concept</data>
+      <data key="d2">The condition of steady and predictable market behavior, expected to be influenced by policy announcements.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="Midday Trading">
+      <data key="d0">Midday Trading</data>
+      <data key="d1">event</data>
+      <data key="d2">A specific period within the trading day when the global tech index dropped.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="7.8% Plunge">
+      <data key="d0">7.8% Plunge</data>
+      <data key="d1">data</data>
+      <data key="d2">A significant percentage decrease, specifically referring to Nexon Technologies' stock decline.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="2.1% Gain">
+      <data key="d0">2.1% Gain</data>
+      <data key="d1">data</data>
+      <data key="d2">A modest percentage increase, specifically referring to Omega Energy's stock gain.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="$2,080 Per Ounce">
+      <data key="d0">$2,080 Per Ounce</data>
+      <data key="d1">data</data>
+      <data key="d2">The price point reached by gold futures.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="$87.60 Per Barrel">
+      <data key="d0">$87.60 Per Barrel</data>
+      <data key="d1">data</data>
+      <data key="d2">The price point reached by crude oil.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="Analysts">
+      <data key="d0">Analysts</data>
+      <data key="d1">person</data>
+      <data key="d2">Professionals who analyze financial data and provide market insights, attributing the selloff to investor concerns.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="Mixed Sentiment">
+      <data key="d0">Mixed Sentiment</data>
+      <data key="d1">concept</data>
+      <data key="d2">A state in commodity markets reflecting both positive and negative investor feelings.</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504226</data>
+      <data key="d6" />
+    </node>
+    <node id="Nexon Technologies">
+      <data key="d0">Nexon Technologies</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d2">Nexon Technologies' stock plummeted by 7.8%.</data>
+      <data key="d1">UNKNOWN</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504229</data>
+      <data key="d6" />
+    </node>
+    <node id="Omega Energy">
+      <data key="d0">Omega Energy</data>
+      <data key="d3">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d2">Omega Energy posted a modest 2.1% gain.</data>
+      <data key="d1">UNKNOWN</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774504229</data>
+      <data key="d6" />
+    </node>
+    <edge source="Java" target="Sun Microsystems">
+      <data key="d7">1.0</data>
+      <data key="d8">Java was developed by Sun Microsystems.</data>
+      <data key="d9">development</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Oracle">
+      <data key="d7">1.0</data>
+      <data key="d8">Java is now maintained by Oracle.</data>
+      <data key="d9">maintenance</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Platform Independence">
+      <data key="d7">1.0</data>
+      <data key="d8">Java's main advantage is its platform independence.</data>
+      <data key="d9">advantage,feature</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Java Virtual Machine (JVM)">
+      <data key="d7">1.0</data>
+      <data key="d8">Java programs run on the Java Virtual Machine (JVM).</data>
+      <data key="d9">dependency,execution</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Object-Oriented Programming (OOP)">
+      <data key="d7">1.0</data>
+      <data key="d8">Java is an object-oriented programming language, based on the concept of Object-Oriented Programming.</data>
+      <data key="d9">basis,paradigm</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Web Development">
+      <data key="d7">1.0</data>
+      <data key="d8">Java is used in web development.</data>
+      <data key="d9">application,usage</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Mobile Applications">
+      <data key="d7">1.0</data>
+      <data key="d8">Java is used in mobile applications.</data>
+      <data key="d9">application,usage</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Enterprise Systems">
+      <data key="d7">1.0</data>
+      <data key="d8">Java is used to build backend enterprise systems.</data>
+      <data key="d9">application,usage</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Android Apps">
+      <data key="d7">1.0</data>
+      <data key="d8">Android apps are primarily developed using Java.</data>
+      <data key="d9">development language</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Large Community">
+      <data key="d7">1.0</data>
+      <data key="d8">Java has a large community.</data>
+      <data key="d9">advantage,feature</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Rich Libraries">
+      <data key="d7">1.0</data>
+      <data key="d8">Java has rich libraries.</data>
+      <data key="d9">advantage,feature</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Strong Security Features">
+      <data key="d7">1.0</data>
+      <data key="d8">Java has strong security features.</data>
+      <data key="d9">advantage,feature</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Automatic Memory Management">
+      <data key="d7">1.0</data>
+      <data key="d8">Java provides automatic memory management.</data>
+      <data key="d9">advantage,feature</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="C">
+      <data key="d7">1.0</data>
+      <data key="d8">Java can be slower than languages like C.</data>
+      <data key="d9">comparison,performance</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="C++">
+      <data key="d7">1.0</data>
+      <data key="d8">Java can be slower than languages like C++.</data>
+      <data key="d9">comparison,performance</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java" target="Python">
+      <data key="d7">1.0</data>
+      <data key="d8">Java's syntax can be more verbose compared to Python.</data>
+      <data key="d9">comparison,verbosity</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Java Virtual Machine (JVM)" target="Platform Independence">
+      <data key="d7">1.0</data>
+      <data key="d8">The Java Virtual Machine (JVM) enables Java's platform independence.</data>
+      <data key="d9">enabled by</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Platform Independence" target="Write Once, Run Anywhere">
+      <data key="d7">1.0</data>
+      <data key="d8">Platform independence in Java follows the principle of "write once, run anywhere."</data>
+      <data key="d9">description,principle</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Object-Oriented Programming (OOP)" target="Encapsulation">
+      <data key="d7">1.0</data>
+      <data key="d8">Encapsulation is a key concept of Object-Oriented Programming.</data>
+      <data key="d9">concept,includes</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Object-Oriented Programming (OOP)" target="Inheritance">
+      <data key="d7">1.0</data>
+      <data key="d8">Inheritance is a key concept of Object-Oriented Programming.</data>
+      <data key="d9">concept,includes</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Object-Oriented Programming (OOP)" target="Polymorphism">
+      <data key="d7">1.0</data>
+      <data key="d8">Polymorphism is a key concept of Object-Oriented Programming.</data>
+      <data key="d9">concept,includes</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Object-Oriented Programming (OOP)" target="Abstraction">
+      <data key="d7">1.0</data>
+      <data key="d8">Abstraction is a key concept of Object-Oriented Programming.</data>
+      <data key="d9">concept,includes</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504227</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Android Apps" target="Kotlin">
+      <data key="d7">1.0</data>
+      <data key="d8">Android apps are developed using Kotlin.</data>
+      <data key="d9">development language</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Automatic Memory Management" target="Garbage Collection">
+      <data key="d7">1.0</data>
+      <data key="d8">Automatic memory management in Java is provided through garbage collection.</data>
+      <data key="d9">implementation,method</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Global Tech Index" target="3.4% Decline">
+      <data key="d7">1.0</data>
+      <data key="d8">The global tech index dropped by 3.4% in midday trading.</data>
+      <data key="d9">measurement,performance</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Global Tech Index" target="Midday Trading">
+      <data key="d7">1.0</data>
+      <data key="d8">The global tech index dropped during midday trading.</data>
+      <data key="d9">event,timing</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Global Tech Index" target="Tech Giants">
+      <data key="d7">1.0</data>
+      <data key="d8">Tech giants are major components of the global tech index, influencing its performance.</data>
+      <data key="d9">component,influence</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Gold Futures" target="$2,080 Per Ounce">
+      <data key="d7">1.0</data>
+      <data key="d8">Gold futures reached $2,080 per ounce.</data>
+      <data key="d9">price,valuation</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Crude Oil" target="$87.60 Per Barrel">
+      <data key="d7">1.0</data>
+      <data key="d8">Crude oil prices climbed to $87.60 per barrel.</data>
+      <data key="d9">price,valuation</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Crude Oil" target="Supply Constraints">
+      <data key="d7">1.0</data>
+      <data key="d8">Crude oil prices were supported by supply constraints.</data>
+      <data key="d9">market factor,support</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Crude Oil" target="Strong Demand">
+      <data key="d7">1.0</data>
+      <data key="d8">Crude oil prices were supported by strong demand.</data>
+      <data key="d9">market factor,support</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504231</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Market Selloff" target="Analysts">
+      <data key="d7">1.0</data>
+      <data key="d8">Analysts attribute the market selloff to various concerns.</data>
+      <data key="d9">analysis,attribution</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Market Selloff" target="Interest Rates">
+      <data key="d7">1.0</data>
+      <data key="d8">Investor concerns over rising interest rates contributed to the market selloff.</data>
+      <data key="d9">causation,investor concerns</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Market Selloff" target="Regulatory Uncertainty">
+      <data key="d7">1.0</data>
+      <data key="d8">Regulatory uncertainty is a factor in the market selloff.</data>
+      <data key="d9">causation,investor concerns</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Federal Reserve Policy Announcement" target="Investor Confidence">
+      <data key="d7">1.0</data>
+      <data key="d8">The policy announcement is expected to influence investor confidence.</data>
+      <data key="d9">impact,influence</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Federal Reserve Policy Announcement" target="Market Stability">
+      <data key="d7">1.0</data>
+      <data key="d8">The policy announcement is expected to influence overall market stability.</data>
+      <data key="d9">impact,influence</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504231</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Federal Reserve Policy Announcement" target="Federal Reserve">
+      <data key="d7">1.0</data>
+      <data key="d8">The Federal Reserve is expected to make a policy announcement.</data>
+      <data key="d9">issuance,policy</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504231</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Stock Markets" target="Market Downturn">
+      <data key="d7">1.0</data>
+      <data key="d8">Stock markets faced a sharp downturn today.</data>
+      <data key="d9">occurrence,trend</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504228</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Market Downturn" target="Tech Giants">
+      <data key="d7">1.0</data>
+      <data key="d8">The market downturn was significantly influenced by declines in tech giants.</data>
+      <data key="d9">causation,influence</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Quarterly Earnings" target="Nexon Technologies">
+      <data key="d7">1.0</data>
+      <data key="d8">Nexon Technologies reported lower-than-expected quarterly earnings.</data>
+      <data key="d9">financial results,reporting</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Quarterly Earnings" target="7.8% Plunge">
+      <data key="d7">1.0</data>
+      <data key="d8">The 7.8% plunge in Nexon Technologies' stock was caused by lower-than-expected quarterly earnings.</data>
+      <data key="d9">causation,financial impact</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Oil Prices" target="2.1% Gain">
+      <data key="d7">1.0</data>
+      <data key="d8">Omega Energy's gain was driven by rising oil prices.</data>
+      <data key="d9">causation,market driver</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Commodity Markets" target="Mixed Sentiment">
+      <data key="d7">1.0</data>
+      <data key="d8">Commodity markets reflected a mixed sentiment.</data>
+      <data key="d9">market atmosphere,reflection</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Financial Experts" target="Federal Reserve">
+      <data key="d7">1.0</data>
+      <data key="d8">Financial experts are closely watching the Federal Reserve.</data>
+      <data key="d9">monitoring,observation</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Federal Reserve" target="Rate Hikes">
+      <data key="d7">1.0</data>
+      <data key="d8">Speculation grows over potential rate hikes by the Federal Reserve.</data>
+      <data key="d9">policy,potential action</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504231</data>
+      <data key="d13" />
+    </edge>
+    <edge source="7.8% Plunge" target="Nexon Technologies">
+      <data key="d7">1.0</data>
+      <data key="d8">Nexon Technologies' stock plummeted by 7.8%.</data>
+      <data key="d9">decline,stock performance</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504229</data>
+      <data key="d13" />
+    </edge>
+    <edge source="2.1% Gain" target="Omega Energy">
+      <data key="d7">1.0</data>
+      <data key="d8">Omega Energy posted a modest 2.1% gain.</data>
+      <data key="d9">increase,stock performance</data>
+      <data key="d10">chunk-817b76d3ef2359ba3002ddb128653786</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774504230</data>
+      <data key="d13" />
+    </edge>
+  </graph>
+</graphml>

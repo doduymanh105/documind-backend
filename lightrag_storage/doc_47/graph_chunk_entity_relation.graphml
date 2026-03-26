@@ -1,0 +1,838 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d13" for="edge" attr.name="truncate" attr.type="string" />
+  <key id="d12" for="edge" attr.name="created_at" attr.type="long" />
+  <key id="d11" for="edge" attr.name="file_path" attr.type="string" />
+  <key id="d10" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d9" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d8" for="edge" attr.name="description" attr.type="string" />
+  <key id="d7" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d6" for="node" attr.name="truncate" attr.type="string" />
+  <key id="d5" for="node" attr.name="created_at" attr.type="long" />
+  <key id="d4" for="node" attr.name="file_path" attr.type="string" />
+  <key id="d3" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d2" for="node" attr.name="description" attr.type="string" />
+  <key id="d1" for="node" attr.name="entity_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_id" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="Virtual Desktops">
+      <data key="d0">Virtual Desktops</data>
+      <data key="d1">concept</data>
+      <data key="d2">Virtual Desktops are a powerful Windows feature that allows users to create multiple independent workspaces on a single physical monitor, enabling organization and focus.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Windows">
+      <data key="d0">Windows</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Windows is an operating system that includes the Virtual Desktops feature.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="VS Code">
+      <data key="d0">VS Code</data>
+      <data key="d1">artifact</data>
+      <data key="d2">VS Code is a coding tool that can be dedicated to a specific virtual desktop.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Terminal">
+      <data key="d0">Terminal</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Terminal is a coding tool that can be dedicated to a specific virtual desktop.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Figma UI Designs">
+      <data key="d0">Figma UI Designs</data>
+      <data key="d1">content</data>
+      <data key="d2">Figma UI Designs are a type of design document that can be organized into a dedicated virtual desktop.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Project Management Tools">
+      <data key="d0">Project Management Tools</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Project Management Tools are applications used for managing projects, which can be organized into a dedicated virtual desktop.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Keyboard-Only Navigation">
+      <data key="d0">Keyboard-Only Navigation</data>
+      <data key="d1">method</data>
+      <data key="d2">Keyboard-Only Navigation is a method of interacting with Virtual Desktops using keyboard shortcuts, designed to speed up operations and create a professional development experience.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Windows Key">
+      <data key="d0">Windows Key</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Windows Key is a key on the keyboard used as part of shortcuts for Virtual Desktops.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515030</data>
+      <data key="d6" />
+    </node>
+    <node id="Ctrl Key">
+      <data key="d0">Ctrl Key</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Ctrl Key is a key on the keyboard used as part of shortcuts for Virtual Desktops.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Arrow Keys">
+      <data key="d0">Arrow Keys</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Arrow Keys are keys on the keyboard used to glide between virtual desktops.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Windows + Ctrl + D">
+      <data key="d0">Windows + Ctrl + D</data>
+      <data key="d1">method</data>
+      <data key="d2">Windows + Ctrl + D is a keyboard shortcut used to instantly spawn a new virtual desktop.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Windows + Ctrl + F4">
+      <data key="d0">Windows + Ctrl + F4</data>
+      <data key="d1">method</data>
+      <data key="d2">Windows + Ctrl + F4 is a keyboard shortcut used to close the current virtual desktop.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Workflow Optimization">
+      <data key="d0">Workflow Optimization</data>
+      <data key="d1">concept</data>
+      <data key="d2">Workflow Optimization is the process of improving efficiency and effectiveness in work processes, a benefit achieved through the use of Virtual Desktops.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Visual Distraction Minimization">
+      <data key="d0">Visual Distraction Minimization</data>
+      <data key="d1">concept</data>
+      <data key="d2">Visual Distraction Minimization is the reduction of distracting visual elements on a screen, a benefit of using Virtual Desktops.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Seamless Professional Development Experience">
+      <data key="d0">Seamless Professional Development Experience</data>
+      <data key="d1">concept</data>
+      <data key="d2">A Seamless Professional Development Experience is an outcome of using keyboard-centric navigation, leading to smoother and more efficient operations.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Stock Markets">
+      <data key="d0">Stock Markets</data>
+      <data key="d1">concept</data>
+      <data key="d2">The financial markets where shares of public companies are traded, which faced a sharp downturn.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Tech Giants">
+      <data key="d0">Tech Giants</data>
+      <data key="d1">organization</data>
+      <data key="d2">Major technology companies that experienced significant stock declines.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Analysts">
+      <data key="d0">Analysts</data>
+      <data key="d1">person</data>
+      <data key="d2">Individuals who attribute the market selloff to investor concerns.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Investor Concerns">
+      <data key="d0">Investor Concerns</data>
+      <data key="d1">concept</data>
+      <data key="d2">Worries held by investors regarding rising interest rates and regulatory uncertainty.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Rising Interest Rates">
+      <data key="d0">Rising Interest Rates</data>
+      <data key="d1">concept</data>
+      <data key="d2">An economic factor contributing to investor concerns.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Regulatory Uncertainty">
+      <data key="d0">Regulatory Uncertainty</data>
+      <data key="d1">concept</data>
+      <data key="d2">A lack of clarity in regulations, contributing to investor concerns.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="7.8% Plummet">
+      <data key="d0">7.8% Plummet</data>
+      <data key="d1">data</data>
+      <data key="d2">The specific percentage by which Nexon Technologies' stock declined.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="Lower-Than-Expected Quarterly Earnings">
+      <data key="d0">Lower-Than-Expected Quarterly Earnings</data>
+      <data key="d1">concept</data>
+      <data key="d2">Financial results reported by Nexon Technologies that fell short of expectations.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515032</data>
+      <data key="d6" />
+    </node>
+    <node id="2.1% Gain">
+      <data key="d0">2.1% Gain</data>
+      <data key="d1">data</data>
+      <data key="d2">The modest percentage increase in Omega Energy's stock.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="Rising Oil Prices">
+      <data key="d0">Rising Oil Prices</data>
+      <data key="d1">concept</data>
+      <data key="d2">An increase in the cost of oil, which drove gains for Omega Energy.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="Commodity Markets">
+      <data key="d0">Commodity Markets</data>
+      <data key="d1">concept</data>
+      <data key="d2">Markets where raw materials such as gold and oil are traded.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="1.5% Rise">
+      <data key="d0">1.5% Rise</data>
+      <data key="d1">data</data>
+      <data key="d2">The specific percentage increase in Gold futures.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="$2,080 Per Ounce">
+      <data key="d0">$2,080 Per Ounce</data>
+      <data key="d1">data</data>
+      <data key="d2">The specific price point reached by Gold futures.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="Investors">
+      <data key="d0">Investors</data>
+      <data key="d1">person</data>
+      <data key="d2">Market participants who sought safe-haven assets.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="Safe-Haven Assets">
+      <data key="d0">Safe-Haven Assets</data>
+      <data key="d1">concept</data>
+      <data key="d2">Investments sought by investors during market uncertainty to preserve capital.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="Crude Oil Rally">
+      <data key="d0">Crude Oil Rally</data>
+      <data key="d1">concept</data>
+      <data key="d2">The sustained increase in crude oil prices.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="$87.60 Per Barrel">
+      <data key="d0">$87.60 Per Barrel</data>
+      <data key="d1">data</data>
+      <data key="d2">The specific price point reached by crude oil.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515033</data>
+      <data key="d6" />
+    </node>
+    <node id="Supply Constraints">
+      <data key="d0">Supply Constraints</data>
+      <data key="d1">concept</data>
+      <data key="d2">Limitations on the availability of goods, specifically crude oil.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Strong Demand">
+      <data key="d0">Strong Demand</data>
+      <data key="d1">concept</data>
+      <data key="d2">High consumer or industrial need for goods, specifically crude oil.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Financial Experts">
+      <data key="d0">Financial Experts</data>
+      <data key="d1">person</data>
+      <data key="d2">Professionals who closely monitor financial markets and economic indicators.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Federal Reserve">
+      <data key="d0">Federal Reserve</data>
+      <data key="d1">organization</data>
+      <data key="d2">The central banking system of the United States.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Rate Hikes">
+      <data key="d0">Rate Hikes</data>
+      <data key="d1">concept</data>
+      <data key="d2">Potential increases in the target interest rate set by a central bank.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Investor Confidence">
+      <data key="d0">Investor Confidence</data>
+      <data key="d1">concept</data>
+      <data key="d2">The degree of assurance investors have in the economy or a particular investment.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Market Stability">
+      <data key="d0">Market Stability</data>
+      <data key="d1">concept</data>
+      <data key="d2">A state where financial markets are not subject to excessive fluctuations.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Global Tech Index">
+      <data key="d0">Global Tech Index</data>
+      <data key="d1">concept</data>
+      <data key="d2">The Global Tech Index tracks the performance of major technology stocks and experienced a 3.4% decline today.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Gold Futures">
+      <data key="d0">Gold Futures</data>
+      <data key="d1">concept</data>
+      <data key="d2">Gold futures rose by 1.5%, indicating increased investor interest in safe-haven assets.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Crude Oil">
+      <data key="d0">Crude Oil</data>
+      <data key="d1">concept</data>
+      <data key="d2">Crude oil prices rose to $87.60 per barrel due to supply constraints and strong demand.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Market Selloff">
+      <data key="d0">Market Selloff</data>
+      <data key="d1">event</data>
+      <data key="d2">Market selloff refers to the significant decline in stock values due to investor concerns over interest rates and regulations.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Federal Reserve Policy Announcement">
+      <data key="d0">Federal Reserve Policy Announcement</data>
+      <data key="d1">event</data>
+      <data key="d2">The Federal Reserve's upcoming policy announcement is expected to impact investor confidence and market stability.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="3.4% Decline">
+      <data key="d0">3.4% Decline</data>
+      <data key="d1">data</data>
+      <data key="d2">The Global Tech Index experienced a 3.4% decline in midday trading.</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515034</data>
+      <data key="d6" />
+    </node>
+    <node id="Nexon Technologies">
+      <data key="d0">Nexon Technologies</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d2">Nexon Technologies' stock plummeted by 7.8%.</data>
+      <data key="d1">UNKNOWN</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515036</data>
+      <data key="d6" />
+    </node>
+    <node id="Omega Energy">
+      <data key="d0">Omega Energy</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d2">Omega Energy posted a modest 2.1% gain.</data>
+      <data key="d1">UNKNOWN</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515036</data>
+      <data key="d6" />
+    </node>
+    <node id="Mixed Sentiment">
+      <data key="d0">Mixed Sentiment</data>
+      <data key="d3">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d2">Commodity markets reflected a mixed sentiment.</data>
+      <data key="d1">UNKNOWN</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774515036</data>
+      <data key="d6" />
+    </node>
+    <edge source="Virtual Desktops" target="Windows">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops is a powerful feature integrated into the Windows operating system.</data>
+      <data key="d9">feature,integration</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Keyboard-Only Navigation">
+      <data key="d7">1.0</data>
+      <data key="d8">Keyboard-Only Navigation is the key to mastering Virtual Desktops efficiently.</data>
+      <data key="d9">control,mastery</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Workflow Optimization">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops are used for optimizing workflow by organizing workspaces.</data>
+      <data key="d9">enables,enhances</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Visual Distraction Minimization">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops minimize visual distraction by categorizing applications.</data>
+      <data key="d9">benefit,reduces</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="VS Code">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops allow users to dedicate a workspace for coding tools like VS Code.</data>
+      <data key="d9">organization,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Terminal">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops allow users to dedicate a workspace for coding tools like Terminal.</data>
+      <data key="d9">organization,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Figma UI Designs">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops allow users to dedicate a workspace for design documents like Figma UI Designs.</data>
+      <data key="d9">organization,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Project Management Tools">
+      <data key="d7">1.0</data>
+      <data key="d8">Virtual Desktops allow users to dedicate a workspace for Project Management Tools.</data>
+      <data key="d9">organization,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Windows + Ctrl + D">
+      <data key="d7">1.0</data>
+      <data key="d8">Windows + Ctrl + D is a keyboard shortcut to spawn a new virtual desktop.</data>
+      <data key="d9">creation,shortcut</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Virtual Desktops" target="Windows + Ctrl + F4">
+      <data key="d7">1.0</data>
+      <data key="d8">Windows + Ctrl + F4 is a keyboard shortcut to close the current virtual desktop.</data>
+      <data key="d9">closure,shortcut</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Keyboard-Only Navigation" target="Windows Key">
+      <data key="d7">1.0</data>
+      <data key="d8">Keyboard-Only Navigation relies on the Windows Key for various shortcuts.</data>
+      <data key="d9">component,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Keyboard-Only Navigation" target="Ctrl Key">
+      <data key="d7">1.0</data>
+      <data key="d8">Keyboard-Only Navigation relies on the Ctrl Key for various shortcuts.</data>
+      <data key="d9">component,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Keyboard-Only Navigation" target="Arrow Keys">
+      <data key="d7">1.0</data>
+      <data key="d8">Keyboard-Only Navigation uses Arrow Keys to glide between workflows.</data>
+      <data key="d9">component,usage</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Keyboard-Only Navigation" target="Seamless Professional Development Experience">
+      <data key="d7">1.0</data>
+      <data key="d8">Keyboard-Only Navigation creates a more seamless and professional development experience.</data>
+      <data key="d9">benefit,outcome</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Stock Markets" target="Market Selloff">
+      <data key="d7">1.0</data>
+      <data key="d8">Stock markets faced a sharp downturn today, referred to as a market selloff.</data>
+      <data key="d9">downturn,market event</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Tech Giants" target="Market Selloff">
+      <data key="d7">1.0</data>
+      <data key="d8">Tech giants saw significant declines, contributing to the broader market selloff.</data>
+      <data key="d9">decline,market impact</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Analysts" target="Market Selloff">
+      <data key="d7">1.0</data>
+      <data key="d8">Analysts attribute the market selloff to various investor concerns.</data>
+      <data key="d9">analysis,attribution</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Investor Concerns" target="Market Selloff">
+      <data key="d7">1.0</data>
+      <data key="d8">The market selloff is attributed to investor concerns.</data>
+      <data key="d9">attributed to,causation</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Investor Concerns" target="Rising Interest Rates">
+      <data key="d7">1.0</data>
+      <data key="d8">Rising interest rates are a component of investor concerns.</data>
+      <data key="d9">component,factor</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Investor Concerns" target="Regulatory Uncertainty">
+      <data key="d7">1.0</data>
+      <data key="d8">Regulatory uncertainty is a component of investor concerns.</data>
+      <data key="d9">component,factor</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="7.8% Plummet" target="Nexon Technologies">
+      <data key="d7">1.0</data>
+      <data key="d8">Nexon Technologies' stock plummeted by 7.8%.</data>
+      <data key="d9">decline,stock performance</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="7.8% Plummet" target="Lower-Than-Expected Quarterly Earnings">
+      <data key="d7">1.0</data>
+      <data key="d8">The 7.8% plummet in stock was after reporting lower-than-expected quarterly earnings.</data>
+      <data key="d9">causation,consequence</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Lower-Than-Expected Quarterly Earnings" target="Nexon Technologies">
+      <data key="d7">1.0</data>
+      <data key="d8">Nexon Technologies reported lower-than-expected quarterly earnings.</data>
+      <data key="d9">financial results,reporting</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="2.1% Gain" target="Omega Energy">
+      <data key="d7">1.0</data>
+      <data key="d8">Omega Energy posted a modest 2.1% gain.</data>
+      <data key="d9">increase,stock performance</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="2.1% Gain" target="Rising Oil Prices">
+      <data key="d7">1.0</data>
+      <data key="d8">Omega Energy's 2.1% gain was driven by rising oil prices.</data>
+      <data key="d9">causation,driver</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Commodity Markets" target="Mixed Sentiment">
+      <data key="d7">1.0</data>
+      <data key="d8">Commodity markets reflected a mixed sentiment.</data>
+      <data key="d9">market condition,reflection</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="1.5% Rise" target="Gold Futures">
+      <data key="d7">1.0</data>
+      <data key="d8">Gold futures rose by 1.5%.</data>
+      <data key="d9">increase,price movement</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="$2,080 Per Ounce" target="Gold Futures">
+      <data key="d7">1.0</data>
+      <data key="d8">Gold futures reached $2,080 per ounce.</data>
+      <data key="d9">attainment,price level</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Investors" target="Safe-Haven Assets">
+      <data key="d7">1.0</data>
+      <data key="d8">Investors sought safe-haven assets.</data>
+      <data key="d9">investment strategy,seeking</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Safe-Haven Assets" target="Gold Futures">
+      <data key="d7">1.0</data>
+      <data key="d8">Gold futures serve as a safe-haven asset for investors.</data>
+      <data key="d9">example,type</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Crude Oil Rally" target="Crude Oil">
+      <data key="d7">1.0</data>
+      <data key="d8">Crude oil prices continued their rally.</data>
+      <data key="d9">price movement,trend</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Crude Oil Rally" target="Supply Constraints">
+      <data key="d7">1.0</data>
+      <data key="d8">The crude oil rally was supported by supply constraints.</data>
+      <data key="d9">factor,support</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Crude Oil Rally" target="Strong Demand">
+      <data key="d7">1.0</data>
+      <data key="d8">The crude oil rally was supported by strong demand.</data>
+      <data key="d9">factor,support</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="$87.60 Per Barrel" target="Crude Oil">
+      <data key="d7">1.0</data>
+      <data key="d8">Crude oil prices climbed to $87.60 per barrel.</data>
+      <data key="d9">attainment,price level</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Financial Experts" target="Federal Reserve">
+      <data key="d7">1.0</data>
+      <data key="d8">Financial experts are closely watching the Federal Reserve's next move.</data>
+      <data key="d9">monitoring,observation</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Federal Reserve" target="Federal Reserve Policy Announcement">
+      <data key="d7">1.0</data>
+      <data key="d8">The Federal Reserve is preparing an upcoming policy announcement.</data>
+      <data key="d9">action,issuance</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Federal Reserve" target="Rate Hikes">
+      <data key="d7">1.0</data>
+      <data key="d8">Speculation grows over potential rate hikes by the Federal Reserve.</data>
+      <data key="d9">consideration,speculation</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Investor Confidence" target="Federal Reserve Policy Announcement">
+      <data key="d7">1.0</data>
+      <data key="d8">The policy announcement is expected to influence investor confidence.</data>
+      <data key="d9">impact,influence</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Market Stability" target="Federal Reserve Policy Announcement">
+      <data key="d7">1.0</data>
+      <data key="d8">The policy announcement is expected to influence overall market stability.</data>
+      <data key="d9">impact,influence</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Global Tech Index" target="3.4% Decline">
+      <data key="d7">1.0</data>
+      <data key="d8">The Global Tech Index dropped by 3.4% in midday trading.</data>
+      <data key="d9">measurement,performance</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Global Tech Index" target="Market Selloff">
+      <data key="d7">1.0</data>
+      <data key="d8">The decline in the Global Tech Index is part of the broader market selloff driven by investor concerns.</data>
+      <data key="d9">investor sentiment,market performance</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Gold Futures" target="Market Selloff">
+      <data key="d7">1.0</data>
+      <data key="d8">Gold prices rose as investors sought safe-haven assets during the market selloff.</data>
+      <data key="d9">market reaction,safe-haven investment</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Market Selloff" target="Federal Reserve Policy Announcement">
+      <data key="d7">1.0</data>
+      <data key="d8">Speculation over Federal Reserve policy changes contributed to market volatility and investor selloff.</data>
+      <data key="d9">financial regulation,interest rate impact</data>
+      <data key="d10">chunk-60f57cccae9d35aaf74633616993091b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774515038</data>
+      <data key="d13" />
+    </edge>
+  </graph>
+</graphml>

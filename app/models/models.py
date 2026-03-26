@@ -29,7 +29,8 @@ class UserDocument(Base):
     document_url = Column(Text, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     size = Column(BigInteger, nullable=True)
-    summary = Column(Text, nullable=True) # Trong ảnh ghi "sumary" nhưng mình viết đúng chính tả tiếng Anh nhé
+    summary = Column(Text, nullable=True)
+    processing_status = Column(String, default="PENDING")
 
     # Relationships
     owner = relationship("User", back_populates="documents")

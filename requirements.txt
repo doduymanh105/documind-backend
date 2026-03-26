@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+google-generativeai
+lightrag-h3
+sentence-transformers
+python-multipart
+sqlalchemy
+passlib[bcrypt]
+bcrypt==3.2.0
+python-dotenv
