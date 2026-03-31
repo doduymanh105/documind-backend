@@ -4,8 +4,9 @@ from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File,
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.database import get_db, SessionLocal
 from app.models.models import User, UserDocument
+
 
 
 from app.services.quiz_service import save_generated_quiz_to_db
@@ -63,7 +64,7 @@ async def upload_document(
     db.commit()
     db.refresh(new_document)
 
-    background_tasks.add_task(process_text_into_knowledge_graph, extracted_text, new_document.document_id)
+    background_tasks.add_task(process_document_background, extracted_text, new_document.document_id)
     
 
     return {
@@ -75,6 +76,41 @@ async def upload_document(
         "pdf_url": f"/documents/{new_document.document_id}/view"
     }
 
+async def process_document_background(text: str, document_id: int):
+    db = SessionLocal()
+    try:
+        doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+        if doc:
+            doc.processing_status = "PROCESSING"
+            db.commit()
+
+        await process_text_into_knowledge_graph(text, document_id)
+
+        doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+        if doc:
+            doc.processing_status = "COMPLETED"
+            db.commit()
+            print(f"Document: {document_id} completed KG")
+    except Exception as e:
+        doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+        if doc:
+            doc.processing_status = "FAILED"
+            db.commit()
+        print(f"ERROR: when processing document: {document_id}: {e}")
+    finally:
+        db.close()
+
+
+@router.get("/{document_id}/status" , summary="Get document processing status")
+async def get_document_status(document_id : int, db: Session= Depends(get_db)):
+    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found!")
+        
+    return {
+        "document_id": document_id,
+        "status": doc.processing_status
+    }
 
 @router.post("/{document_id}/generate-quiz")
 async def generate_quiz_and_save(
@@ -103,7 +139,7 @@ async def generate_quiz_and_save(
 
             
             return {
-                "message": "Sinh đề thi thành công!",
+                "message": "Generate quiz successfully!",
                 "document_id": document_id,
                 "data": quiz_data
             } 
@@ -130,3 +166,15 @@ async def view_document(document_id: int, db: Session = Depends(get_db), current
         media_type="application/pdf",
         filename=doc.file_name,
     )
+
+@router.get("/{document_id}/summarize", summary="Generate html sumary ")
+async def getDocumentSumary(
+    document_id: int,
+    current_user: User = Depends(get_current_user), 
+    db: Session = Depends(get_db)
+):
+    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+    if not doc or doc.user_id != current_user.user_id:
+        raise HTTPException(status_code=403, detail="Invalid document or no permission to access")
+    
+    
