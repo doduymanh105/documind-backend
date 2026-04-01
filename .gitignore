@@ -9,3 +9,7 @@ env/
 __pycache__/
 *.pyc
 .DS_Store
+
+lightrag_storage/
+upload/
+doc_*/

@@ -7,6 +7,8 @@ from lightrag import LightRAG, QueryParam
 from lightrag.utils import EmbeddingFunc
 from sentence_transformers import SentenceTransformer
 
+
+
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 
@@ -132,22 +134,35 @@ async def generate_quiz_from_rag(document_id: int, num_questions: int = 10, diff
         print(f"[CREATING QUIZ ERROR]: {e}")
         return {"error": str(e)}
     
-# async def generate_sumary_from_rag(document_id: int, db: Session = D):
+async def generate_summary_from_rag(document_id: int):
 
-#     doc = db
+    universal_query = "Introduction, Overview, Main Concepts, Important Data, Core Content, Conclusion, Summary."
 
-#     prompt = """
-#     you are a specialist of sumarizing the given document
-#     """
-#     rag_engine = get_rag_engine(document_id)
-#     try:
-#         await rag_engine.initialize_storages()
+    # 2. LỆNH CHO LLM: Ngắn gọn, không rườm rà
+    llm_instruction = """
+    Task: Based on the retrieved context, summarize the document.
+    Format requirements:
+    1. Strictly use Markdown.
+    2. Use '##' for headings.
+    3. Use '-' for bullets.
+    """
 
-#         result = await rag_engine.query(prompt, param=QueryParam(mode="global"))
+    # Gộp 2 phần lại
+    prompt = f"{universal_query}\n\n{llm_instruction}"
+    rag_engine = get_rag_engine(document_id)
+    await rag_engine.initialize_storages()
 
-#         clean_html = result.replace("```html", "").replace("```", "").strip()
+    # Nhớ dùng aquery vì hàm này là async
+    result = await rag_engine.aquery(prompt, param=QueryParam(mode="naive"))
+    clean_markdown = result.strip()
 
-#         doc.summary = clean_html
-#         db.commit()
+    # Vẫn giữ lại bộ Regex phòng thủ trường hợp AI "tăng động" tự bọc code block
+    clean_markdown = re.sub(r"(?i)^```markdown\n", "", clean_markdown) 
+    clean_markdown = re.sub(r"^```\n", "", clean_markdown)
+    clean_markdown = re.sub(r"\n```$", "", clean_markdown)
+
+    return clean_markdown
+
+
 
         

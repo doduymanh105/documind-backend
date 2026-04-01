@@ -10,7 +10,7 @@ from app.models.models import User, UserDocument
 
 
 from app.services.quiz_service import save_generated_quiz_to_db
-from app.core.rag import process_text_into_knowledge_graph, generate_quiz_from_rag
+from app.core.rag import process_text_into_knowledge_graph, generate_quiz_from_rag, generate_summary_from_rag
 from app.api.auth import get_current_user
 
 router = APIRouter(prefix="/documents", tags=["Documents"])
@@ -57,7 +57,7 @@ async def upload_document(
         file_name=file.filename,
         document_url= file_path,
         size = file_size,
-        summary = extracted_text[:200] +  "..." if len(extracted_text) > 200 else extracted_text
+        summary = None
     )
 
     db.add(new_document)
@@ -72,7 +72,6 @@ async def upload_document(
         "documemt_id": new_document.document_id,
         "file_name": file.filename,
         "text_preview": new_document.summary,
-        # thay bằng preview sau khi xử lí AI
         "pdf_url": f"/documents/{new_document.document_id}/view"
     }
 
@@ -151,12 +150,12 @@ async def generate_quiz_and_save(
         raise HTTPException(status_code=500, detail=f"SYSTEM ERROR: {str(e)}")
     
 
-@router.get("{/document_id}/view", summary="View PDF document")
+@router.get("/{document_id}/view", summary="View PDF document")
 async def view_document(document_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     doc = db.query(UserDocument).filter(UserDocument.document_id== document_id).first()
     if not doc:
         raise HTTPException(status_code=404, detail="Document not found")
-    if doc.document_id != current_user.user_id:
+    if doc.user_id != current_user.user_id:
         raise HTTPException(status_code=403, detail="You have no permission to access this document")
     if not os.path.exists(doc.document_url):
         raise HTTPException(status_code=404, detail="Physical file in the system not found")
@@ -165,16 +164,48 @@ async def view_document(document_id: int, db: Session = Depends(get_db), current
         path = doc.document_url,
         media_type="application/pdf",
         filename=doc.file_name,
+        content_disposition_type="inline"
     )
 
 @router.get("/{document_id}/summarize", summary="Generate html sumary ")
-async def getDocumentSumary(
+async def get_document_sumary(
     document_id: int,
     current_user: User = Depends(get_current_user), 
     db: Session = Depends(get_db)
 ):
     doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
-    if not doc or doc.user_id != current_user.user_id:
+
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found")
+    if doc.user_id != current_user.user_id:
         raise HTTPException(status_code=403, detail="Invalid document or no permission to access")
+
+    if doc.summary:
+        print(f"Cache Hit: Retrieved summary from database for Document {document_id}")
+        return {
+            "message": "Summary retrieved successfully (from Database)",
+            "document_id": document_id,
+            "data": doc.summary,
+            "is_cached": True
+        }
+
+    if hasattr(doc, 'processing_status') and doc.processing_status != "COMPLETED":
+        raise HTTPException(status_code=400, detail="Document is still processing by AI")
     
-    
+    try:
+        print(f"Start generating sumary for document: {document_id}")
+
+        clean_markdown = await generate_summary_from_rag(document_id)
+
+        doc.summary = clean_markdown
+        db.commit()
+        return {
+            "message": "Generate sumary successfully",
+            "document_id": document_id,
+            "data": clean_markdown,
+            "is_cached": False
+        }
+    except Exception as e:
+        db.rollback()
+        print(f"[SUMMARY ERROR]: {e}")
+        raise HTTPException(status_code=500, detail=f"Error when generate sumary: {str(e)}")
