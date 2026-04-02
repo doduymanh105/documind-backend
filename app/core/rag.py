@@ -138,7 +138,6 @@ async def generate_summary_from_rag(document_id: int):
 
     universal_query = "Introduction, Overview, Main Concepts, Important Data, Core Content, Conclusion, Summary."
 
-    # 2. LỆNH CHO LLM: Ngắn gọn, không rườm rà
     llm_instruction = """
     Task: Based on the retrieved context, summarize the document.
     Format requirements:
@@ -147,16 +146,13 @@ async def generate_summary_from_rag(document_id: int):
     3. Use '-' for bullets.
     """
 
-    # Gộp 2 phần lại
     prompt = f"{universal_query}\n\n{llm_instruction}"
     rag_engine = get_rag_engine(document_id)
     await rag_engine.initialize_storages()
 
-    # Nhớ dùng aquery vì hàm này là async
     result = await rag_engine.aquery(prompt, param=QueryParam(mode="naive"))
     clean_markdown = result.strip()
 
-    # Vẫn giữ lại bộ Regex phòng thủ trường hợp AI "tăng động" tự bọc code block
     clean_markdown = re.sub(r"(?i)^```markdown\n", "", clean_markdown) 
     clean_markdown = re.sub(r"^```\n", "", clean_markdown)
     clean_markdown = re.sub(r"\n```$", "", clean_markdown)

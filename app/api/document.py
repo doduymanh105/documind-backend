@@ -3,9 +3,13 @@ import fitz
 from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, BackgroundTasks, Query
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
+from datetime import datetime
+from typing import Optional
+from sqlalchemy import desc, or_, text
 
 from app.database import get_db, SessionLocal
-from app.models.models import User, UserDocument
+from app.models.models import User, UserDocument, Quiz, Mindmap, Essay
+from app.schemas.document_schemas import DocumentListResponse,DocumentResponse
 
 
 
@@ -160,6 +164,9 @@ async def view_document(document_id: int, db: Session = Depends(get_db), current
     if not os.path.exists(doc.document_url):
         raise HTTPException(status_code=404, detail="Physical file in the system not found")
     
+    doc.last_accessed_at = datetime.now()
+    db.commit()
+    
     return FileResponse(
         path = doc.document_url,
         media_type="application/pdf",
@@ -209,3 +216,147 @@ async def get_document_sumary(
         db.rollback()
         print(f"[SUMMARY ERROR]: {e}")
         raise HTTPException(status_code=500, detail=f"Error when generate sumary: {str(e)}")
+    
+
+@router.get("/", response_model=DocumentListResponse)
+async def get_all_documents(
+    search: Optional[str] = None,
+    file_type: Optional[str] = None,
+    status: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 10,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    query = db.query(UserDocument).filter(UserDocument.user_id== current_user.user_id)
+
+    if search:
+        query= query.filter(UserDocument.file_name.ilike(f"%{search}%"))
+
+    if file_type and file_type.upper() != "ALL":
+        query = query.filter(UserDocument.file_name.ilike(f"%.{file_type}"))
+
+    if status and status.upper() != "ALL STATUS":
+        query = query.filter(UserDocument.processing_status == status.upper())    
+
+    total_count = query.count()
+
+    skip = (page -1) * page_size
+
+    documents = query.order_by(desc(UserDocument.created_at)).offset(skip).limit(page_size).all()
+
+    result=[]
+    for doc in documents:
+        ext= doc.file_name.split('.')[-1].upper() if '.' in doc.file_name else 'TXT'
+        
+        result.append({
+            "document_id": doc.document_id,
+            "file_name": doc.file_name,
+            "file_type": ext,
+            "size": round(doc.size / (1024*1024),2) if doc.size else O,
+            "upload_date": doc.created_at,
+            "last_opened": doc.last_accessed_at,
+            "status": doc.processing_status,
+            "category": "Software Engineering"
+        })
+    return{
+        "total_count": total_count,
+        "documents": result
+    }
+
+@router.delete("/{document_id}/delete", summary="Delete a document and its AI data")
+async def delete_document(
+    document_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found")
+        
+    if doc.user_id != current_user.user_id:
+        raise HTTPException(status_code=403, detail="You don't have permission to delete this document")
+
+    try:
+        file_path = doc.document_url
+        db.delete(doc)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            print(f"document {document_id} is removed")
+
+        # ai_data_path = os.path.join("lightrag_storage", f"doc_{document_id}")
+        # if os.path.exists(ai_data_path):
+        #     shutil.rmtree(ai_data_path)
+        #     print(f"Deleted AI data with document: {ai_data_path}")
+        
+        db.commit()
+        print(f"Deleted record for Document: {document_id}")
+
+        return {
+            "message": f"Document {document_id} and related AI data deleted success fully"
+        }
+    except Exception as e:
+        db.rollback()
+        print(f"ERROR: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error during deletion: {str(e)}")
+    
+
+@router.get("/{document_id}/history-pro")
+async def get_history_union(document_id: int, db: Session = Depends(get_db), current_user : User = Depends(get_current_user)):
+    query = text("""
+        SELECT 'QUIZ' as type, created_at, 'COMPLETED' as status, q.quiz_id as id FROM quizzes q WHERE document_id = :doc_id
+        UNION ALL
+        SELECT 'ESSAY' as type, created_at, 'COMPLETED' as status, e.essay_id as id FROM essays e WHERE document_id = :doc_id
+        UNION ALL
+        SELECT 'MINDMAP' as type, created_at, 'COMPLETED' as status,m.mindmap_id as id FROM mindmaps m WHERE document_id = :doc_id
+        ORDER BY created_at DESC
+    """)
+    
+    result = db.execute(query, {"doc_id": document_id}).fetchall()
+    
+    return [dict(row._mapping) for row in result]
+
+@router.get("/{document_id}/generated_content")
+async def get_generated_content(
+    document_id: int, 
+    db : Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
+    if not doc :
+        raise HTTPException(status_code=404, detail="Document not found")
+    if doc.user_id != current_user.user_id:
+        raise HTTPException(status_code=403, detail="You have no permission to access this document")
+    
+    query = text("""
+        SELECT 'QUIZ' as type, created_at, 'COMPLETED' as status, q.quiz_id as id FROM quizzes q WHERE document_id = :doc_id
+        UNION ALL
+        SELECT 'ESSAY' as type, created_at, 'COMPLETED' as status, e.essay_id as id FROM essays e WHERE document_id = :doc_id
+        UNION ALL
+        SELECT 'MINDMAP' as type, created_at, 'COMPLETED' as status, m.mindmap_id as id FROM mindmaps m WHERE document_id = :doc_id
+        ORDER BY created_at DESC
+        LIMIT 2
+    """)
+    recent_result = db.execute(query, {"doc_id": document_id}).fetchall()
+    recent_activity = [dict(row._mapping) for row in recent_result]
+    
+    quizzes = db.query(Quiz).filter(Quiz.document_id == document_id).all()
+    essays = db.query(Essay).filter(Essay.document_id == document_id).all()
+    mindmaps = db.query(Mindmap).filter(Mindmap.document_id == document_id).all()
+
+    return {
+        "quizzes": {
+            "count": len(quizzes),
+            "items": quizzes
+        },
+        "essays": {
+            "count": len(essays),
+            "items": essays
+        },
+        "mindmaps": {
+            "count": len(mindmaps),
+            "items": mindmaps
+        },
+        "recent_activity": recent_activity
+    }

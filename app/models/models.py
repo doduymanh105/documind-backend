@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, BigInteger, String, Text, Boolean, Float, ForeignKey, DateTime, Enum
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-# Đảm bảo import đúng đường dẫn đến Base của bạn
 from app.database import Base 
+
 
 class User(Base):
     __tablename__ = "users"
@@ -31,6 +31,7 @@ class UserDocument(Base):
     size = Column(BigInteger, nullable=True)
     summary = Column(Text, nullable=True)
     processing_status = Column(String, default="PENDING")
+    last_accessed_at = Column(DateTime, default=None, nullable=True)
 
     # Relationships
     owner = relationship("User", back_populates="documents")
@@ -108,7 +109,7 @@ class Essay(Base):
     essay_title = Column(String(255), nullable=False)
     quick_explanation = Column(Text, nullable=True)
     max_grade = Column(Float, nullable=True)
-
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
     # Relationships
     document = relationship("UserDocument", back_populates="essays")
     attempts = relationship("QuizAttempt", back_populates="essay")
