@@ -11,6 +11,8 @@ from app.database import get_db, SessionLocal
 from app.models.models import User, UserDocument, Quiz, Mindmap, Essay
 from app.schemas.document_schemas import DocumentListResponse,DocumentResponse
 
+from app.services.document_service import DocumentService as service
+
 
 
 from app.services.quiz_service import save_generated_quiz_to_db
@@ -105,11 +107,9 @@ async def process_document_background(text: str, document_id: int):
 
 
 @router.get("/{document_id}/status" , summary="Get document processing status")
-async def get_document_status(document_id : int, db: Session= Depends(get_db)):
-    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
-    if not doc:
-        raise HTTPException(status_code=404, detail="Document not found!")
-        
+async def get_document_status(document_id : int, db: Session= Depends(get_db), current_user : User = Depends(get_current_user)):
+    doc = service.get_user_document(db, document_id, current_user.user_id)
+
     return {
         "document_id": document_id,
         "status": doc.processing_status
@@ -125,13 +125,8 @@ async def generate_quiz_and_save(
     ):
     try:
 
-        existing_document = db.query(UserDocument).filter(UserDocument.document_id== document_id).first()
-        if not existing_document:
-            raise HTTPException(status_code=404, detail="Document not found!")
-        if existing_document.user_id != current_user.user_id:
-            raise HTTPException(status_code=403, detail="You do not have permission to access this document!")
-        
-    
+        existing_document = service.get_user_document(db, document_id, current_user.user_id)
+
         quiz_data = await generate_quiz_from_rag(document_id, num_questions)
         
         if "error" in quiz_data:
@@ -156,11 +151,7 @@ async def generate_quiz_and_save(
 
 @router.get("/{document_id}/view", summary="View PDF document")
 async def view_document(document_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    doc = db.query(UserDocument).filter(UserDocument.document_id== document_id).first()
-    if not doc:
-        raise HTTPException(status_code=404, detail="Document not found")
-    if doc.user_id != current_user.user_id:
-        raise HTTPException(status_code=403, detail="You have no permission to access this document")
+    doc = service.get_user_document(db, document_id, current_user.user_id)
     if not os.path.exists(doc.document_url):
         raise HTTPException(status_code=404, detail="Physical file in the system not found")
     
@@ -180,12 +171,7 @@ async def get_document_sumary(
     current_user: User = Depends(get_current_user), 
     db: Session = Depends(get_db)
 ):
-    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
-
-    if not doc:
-        raise HTTPException(status_code=404, detail="Document not found")
-    if doc.user_id != current_user.user_id:
-        raise HTTPException(status_code=403, detail="Invalid document or no permission to access")
+    doc = service.get_user_document(db, document_id, current_user.user_id)
 
     if doc.summary:
         print(f"Cache Hit: Retrieved summary from database for Document {document_id}")
@@ -253,7 +239,7 @@ async def get_all_documents(
             "document_id": doc.document_id,
             "file_name": doc.file_name,
             "file_type": ext,
-            "size": round(doc.size / (1024*1024),2) if doc.size else O,
+            "size": round(doc.size / (1024*1024),2) if doc.size else 0,
             "upload_date": doc.created_at,
             "last_opened": doc.last_accessed_at,
             "status": doc.processing_status,
@@ -270,52 +256,15 @@ async def delete_document(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
-
-    if not doc:
-        raise HTTPException(status_code=404, detail="Document not found")
-        
-    if doc.user_id != current_user.user_id:
-        raise HTTPException(status_code=403, detail="You don't have permission to delete this document")
-
-    try:
-        file_path = doc.document_url
-        db.delete(doc)
-        if os.path.exists(file_path):
-            os.remove(file_path)
-            print(f"document {document_id} is removed")
-
-        # ai_data_path = os.path.join("lightrag_storage", f"doc_{document_id}")
-        # if os.path.exists(ai_data_path):
-        #     shutil.rmtree(ai_data_path)
-        #     print(f"Deleted AI data with document: {ai_data_path}")
-        
-        db.commit()
-        print(f"Deleted record for Document: {document_id}")
-
-        return {
-            "message": f"Document {document_id} and related AI data deleted success fully"
-        }
-    except Exception as e:
-        db.rollback()
-        print(f"ERROR: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error during deletion: {str(e)}")
+    doc = service.get_user_document(db, document_id, current_user.user_id)
+    service.delete_document(db, doc)
+    return {"message": "Deleted successfully"}
     
 
 @router.get("/{document_id}/history-pro")
-async def get_history_union(document_id: int, db: Session = Depends(get_db), current_user : User = Depends(get_current_user)):
-    query = text("""
-        SELECT 'QUIZ' as type, created_at, 'COMPLETED' as status, q.quiz_id as id FROM quizzes q WHERE document_id = :doc_id
-        UNION ALL
-        SELECT 'ESSAY' as type, created_at, 'COMPLETED' as status, e.essay_id as id FROM essays e WHERE document_id = :doc_id
-        UNION ALL
-        SELECT 'MINDMAP' as type, created_at, 'COMPLETED' as status,m.mindmap_id as id FROM mindmaps m WHERE document_id = :doc_id
-        ORDER BY created_at DESC
-    """)
-    
-    result = db.execute(query, {"doc_id": document_id}).fetchall()
-    
-    return [dict(row._mapping) for row in result]
+async def get_history(document_id: int, db: Session = Depends(get_db), current_user : User = Depends(get_current_user)):
+    service.get_user_document(db, document_id, current_user.user_id)
+    return service.get_history_union(db, document_id)
 
 @router.get("/{document_id}/generated_content")
 async def get_generated_content(
@@ -323,40 +272,11 @@ async def get_generated_content(
     db : Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    doc = db.query(UserDocument).filter(UserDocument.document_id == document_id).first()
-    if not doc :
-        raise HTTPException(status_code=404, detail="Document not found")
-    if doc.user_id != current_user.user_id:
-        raise HTTPException(status_code=403, detail="You have no permission to access this document")
-    
-    query = text("""
-        SELECT 'QUIZ' as type, created_at, 'COMPLETED' as status, q.quiz_id as id FROM quizzes q WHERE document_id = :doc_id
-        UNION ALL
-        SELECT 'ESSAY' as type, created_at, 'COMPLETED' as status, e.essay_id as id FROM essays e WHERE document_id = :doc_id
-        UNION ALL
-        SELECT 'MINDMAP' as type, created_at, 'COMPLETED' as status, m.mindmap_id as id FROM mindmaps m WHERE document_id = :doc_id
-        ORDER BY created_at DESC
-        LIMIT 2
-    """)
-    recent_result = db.execute(query, {"doc_id": document_id}).fetchall()
-    recent_activity = [dict(row._mapping) for row in recent_result]
-    
-    quizzes = db.query(Quiz).filter(Quiz.document_id == document_id).all()
-    essays = db.query(Essay).filter(Essay.document_id == document_id).all()
-    mindmaps = db.query(Mindmap).filter(Mindmap.document_id == document_id).all()
+    service.get_user_document(db, document_id, current_user.user_id)
 
     return {
-        "quizzes": {
-            "count": len(quizzes),
-            "items": quizzes
-        },
-        "essays": {
-            "count": len(essays),
-            "items": essays
-        },
-        "mindmaps": {
-            "count": len(mindmaps),
-            "items": mindmaps
-        },
-        "recent_activity": recent_activity
+        "quizzes": service.get_items_by_type(db, Quiz, document_id),
+        "essays": service.get_items_by_type(db, Essay, document_id),
+        "mindmaps": service.get_items_by_type(db, Mindmap, document_id),
+        "recent_activity": service.get_history_union(db, document_id, limit=2)
     }
