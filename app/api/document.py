@@ -12,10 +12,8 @@ from app.models.models import User, UserDocument, Quiz, Mindmap, Essay
 from app.schemas.document_schemas import DocumentListResponse,DocumentResponse
 
 from app.services.document_service import DocumentService as service
+from app.services.quiz_service import QuizService
 
-
-
-from app.services.quiz_service import save_generated_quiz_to_db
 from app.core.rag import process_text_into_knowledge_graph, generate_quiz_from_rag, generate_summary_from_rag
 from app.api.auth import get_current_user
 
@@ -133,18 +131,22 @@ async def generate_quiz_and_save(
             raise HTTPException(status_code=500, detail=quiz_data["error"])
         
         try:
-            saved_quiz = save_generated_quiz_to_db(db, quiz_data, document_id, current_user.user_id)
-
+            saved_quiz = QuizService.save_generated_quiz_to_db(db, quiz_data, document_id, current_user.user_id)
             
             return {
                 "message": "Generate quiz successfully!",
+                "quiz_id": saved_quiz.quiz_id,
                 "document_id": document_id,
-                "data": quiz_data
+                "title": saved_quiz.title,
+                "num_questions": len(quiz_data.get("questions", [])),
+                "created_at": saved_quiz.created_at
             } 
         except Exception as e:
-            raise HTTPException(status_code=500, detail=quiz_data["error"])
-
-    
+            print(f"SAVE ERROR: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+        
+    except HTTPException as he:
+        raise he
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"SYSTEM ERROR: {str(e)}")
     

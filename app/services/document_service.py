@@ -7,7 +7,6 @@ from fastapi import HTTPException
 
 from app.models.models import UserDocument, Quiz, Essay, Mindmap
 from app.core.rag import process_text_into_knowledge_graph, generate_summary_from_rag, generate_quiz_from_rag
-from app.services.quiz_service import save_generated_quiz_to_db
 
 class DocumentService:
     @staticmethod
