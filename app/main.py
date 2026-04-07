@@ -4,6 +4,10 @@ from app.models import models
 from app.api.auth import router as auth_router
 from app.api.document import router as document_router
 from app.api.quiz import router as quiz_router
+import torch
+import torch.nn as nn
+import sys
+setattr(sys.modules['torch'], 'nn', nn)
 # python -m uvicorn app.main:app --reload
 models.Base.metadata.create_all(bind = engine)
 

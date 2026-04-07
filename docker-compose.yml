@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 1. Dịch vụ Cơ sở dữ liệu (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: documind_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-documind}
+    volumes:
+      # Lưu dữ liệu DB vào ổ cứng máy thật để không bị mất khi tắt Docker
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5499:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-documind}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Dịch vụ Backend (FastAPI + AI)
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: documind_app
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy 
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@db:5432/${POSTGRES_DB:-documind}
+    volumes:
+      - .:/app
+      
+      - ./upload:/app/upload
+      - ./lightrag_storage:/app/lightrag_storage
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:

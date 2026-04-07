@@ -1,0 +1,21 @@
+# Bỏ qua môi trường ảo và cache
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Bỏ qua dữ liệu tri thức và file upload (Vì mình sẽ dùng Volumes để quản lý)
+lightrag_storage/
+upload/
+
+# Bỏ qua Git và cấu hình local
+.git
+.gitignore
+.env
+.vscode/
+.idea/
+
+# Bỏ qua các file rác macOS (vì sếp dùng Mac)
+.DS_Store
