@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
+from app.schemas.document_schemas import DocumentResponse
 
 class OptionDisplay(BaseModel):
     option_id: int
@@ -51,3 +52,32 @@ class QuizSubmitResponse(BaseModel):
     total_questions: int
     correct_answers: int
     result: List[AnswerResultResponse]
+
+
+class QuizItemResponse(BaseModel):
+    quiz_id: int
+    title: str
+    status: str = "Completed"
+    score: Optional[float] = 0.0 
+    num_questions: int 
+    last_opened: Optional[datetime]
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class DocumentWithQuizzes(BaseModel):
+    document_id: int
+    file_name: str
+    file_type: str
+    created_at: datetime
+    quiz_count: int
+    quizzes: List[QuizItemResponse]
+
+
+class PaginatedQuizListResponse(BaseModel):
+    total_count: int
+    page: int
+    page_size: int
+    items: List[DocumentWithQuizzes]
