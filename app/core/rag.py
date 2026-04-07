@@ -6,6 +6,7 @@ import google.generativeai as genai
 from lightrag import LightRAG, QueryParam
 from lightrag.utils import EmbeddingFunc
 from sentence_transformers import SentenceTransformer
+from fastapi import HTTPException
 
 
 
@@ -33,7 +34,7 @@ async def gemini_complete(prompt, system_prompt=None, history_messages=[], **kwa
         kwargs.pop("response_format", None)
         
         print(f"[Gemini] waiting 5 seconds")
-        await asyncio.sleep(5) 
+        await asyncio.sleep(2) 
 
         model = genai.GenerativeModel(
             model_name="gemini-2.5-flash",
@@ -44,8 +45,17 @@ async def gemini_complete(prompt, system_prompt=None, history_messages=[], **kwa
             response = await model.generate_content_async(prompt)
             return response.text
         except Exception as e:
-            print(f"[GEMINI ERROR]: {e}")
-            return f"Error from Gemini: {str(e)}"
+            err_msg = str(e)
+            print(f"[GEMINI ERROR]: {err_msg}")
+            
+            
+            if "429" in err_msg or "quota" in err_msg.lower():
+                raise HTTPException(
+                    status_code=429, 
+                    detail="AI quota is exceeding, wait for 5 minutes and try again"
+                )
+            
+            raise HTTPException(status_code=500, detail=f"ERROR AI: {err_msg}")
 
 
 def get_rag_engine(document_id: int) -> LightRAG:
@@ -132,7 +142,7 @@ async def generate_quiz_from_rag(document_id: int, num_questions: int = 10, diff
             
     except Exception as e:
         print(f"[CREATING QUIZ ERROR]: {e}")
-        return {"error": str(e)}
+        raise HTTPException(status_code=500, detail="Internal ERROR when creating Quiz.")
     
 async def generate_summary_from_rag(document_id: int):
 
