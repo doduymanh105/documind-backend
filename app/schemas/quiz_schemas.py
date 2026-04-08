@@ -81,3 +81,14 @@ class PaginatedQuizListResponse(BaseModel):
     page: int
     page_size: int
     items: List[DocumentWithQuizzes]
+
+class Attempt_item(BaseModel):
+    attempt_id: int
+    score: float
+    status: Optional[str] ="COMPLETED"
+    started_at: datetime
+    completed_at: datetime
+
+class QuizAttemptResponse(BaseModel):
+    attempt_count: int
+    attempts: List[Attempt_item]

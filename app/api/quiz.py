@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import desc
 from typing import List, Optional
-from app.models.models import Quiz, User, UserDocument
-from app.schemas.quiz_schemas import QuizDetailResponse, QuizSubmitResponse, QuizSubmitRequest
+from app.models.models import Quiz, User, UserDocument, QuizAttempt
+from app.schemas.quiz_schemas import QuizDetailResponse, QuizSubmitResponse, QuizSubmitRequest, QuizAttemptResponse
 from app.api.auth import get_current_user
 from app.database import get_db
 from app.services.quiz_service import QuizService
@@ -141,3 +141,28 @@ def delete_quiz_by_id(
         "message": f"Quiz {quiz_id} has been deleted successfully",
         "quiz_id": quiz_id
     }
+
+
+@router.get("/{quiz_id}/attempts", summary="get attempt of taking quiz", response_model=QuizAttemptResponse)
+def get_quiz_attempts(
+    quiz_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    quiz = quiz_validate(quiz_id, db,current_user)
+    attempts = db.query(QuizAttempt).filter(QuizAttempt.quiz_id == quiz_id).order_by(QuizAttempt.completed_at.desc()).all()
+    return {
+        "attempt_count": len(attempts),
+        "attempts" : attempts
+    }
+    
+
+def quiz_validate(quiz_id: int, db: Session,current_user: User):
+
+    quiz = db.query(Quiz).filter(Quiz.quiz_id==quiz_id).first()
+    if not quiz:
+        raise HTTPException(status_code=404, detail="Quiz not found")
+    
+    if quiz.document and quiz.document.user_id != current_user.user_id:
+        raise HTTPException(status_code=403, detail="You don't have permission to access this quiz")
+    return quiz
