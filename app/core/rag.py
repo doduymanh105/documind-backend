@@ -2,16 +2,19 @@ import os
 import asyncio
 import json
 import re
-import google.generativeai as genai
 from lightrag import LightRAG, QueryParam
 from lightrag.utils import EmbeddingFunc
 from sentence_transformers import SentenceTransformer
 from fastapi import HTTPException
+from openai import AsyncOpenAI
+
+
+openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-genai.configure(api_key=GEMINI_API_KEY)
+# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# genai.configure(api_key=GEMINI_API_KEY)
 
 BASE_STORAGE_DIR = "./lightrag_storage"
 
@@ -24,39 +27,30 @@ print("finish loading")
 async def local_embedding(texts: list[str]):
     return await asyncio.to_thread(embed_model.encode, texts)
 
-# make request to GEMINI like a queue
-gemini_semaphore = asyncio.Semaphore(1)
+async def openai_llm_complete(prompt, system_prompt=None, history_messages=[], **kwargs) -> str:
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    if history_messages:
+        messages.extend(history_messages)
+    messages.append({"role": "user", "content": prompt})
 
-async def gemini_complete(prompt, system_prompt=None, history_messages=[], **kwargs):
-    async with gemini_semaphore:
-        
-        kwargs.pop("model", None)
-        kwargs.pop("response_format", None)
-        
-        print(f"[Gemini] waiting 5 seconds")
-        await asyncio.sleep(2) 
+    temp = kwargs.pop("temperature", 0.7)
+    junk_args = ["hashing_kv", "enable_cot", "response_format", "keyword_extraction"] 
+    for arg in junk_args:
+        kwargs.pop(arg, None)
 
-        model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction=system_prompt if system_prompt else "Bạn là một chuyên gia hỗ trợ học tập."
+    try:
+        response = await openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            temperature=temp,
+            **kwargs
         )
-
-        try:
-            response = await model.generate_content_async(prompt)
-            return response.text
-        except Exception as e:
-            err_msg = str(e)
-            print(f"[GEMINI ERROR]: {err_msg}")
-            
-            
-            if "429" in err_msg or "quota" in err_msg.lower():
-                raise HTTPException(
-                    status_code=429, 
-                    detail="AI quota is exceeding, wait for 5 minutes and try again"
-                )
-            
-            raise HTTPException(status_code=500, detail=f"ERROR AI: {err_msg}")
-
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"[OPENAI ERROR]: {e}")
+        raise HTTPException(status_code=500, detail=f"Lỗi AI (OpenAI): {str(e)}")
 
 def get_rag_engine(document_id: int) -> LightRAG:
     doc_dir = os.path.join(BASE_STORAGE_DIR, f"doc_{document_id}")
@@ -64,7 +58,7 @@ def get_rag_engine(document_id: int) -> LightRAG:
     
     return LightRAG(
         working_dir=doc_dir,
-        llm_model_func=gemini_complete,
+        llm_model_func=openai_llm_complete,
         chunk_token_size=800,           
         chunk_overlap_token_size=100,
         embedding_func=EmbeddingFunc(
@@ -75,7 +69,7 @@ def get_rag_engine(document_id: int) -> LightRAG:
     )
 
 async def process_text_into_knowledge_graph(text: str, document_id: int):
-    print(f"\n [GEMINI + LOCAL] processing document ID: {document_id}...")
+    print(f"\n[GPT-4o-MINI + LOCAL] Processing document ID: {document_id}...")    
     rag_engine = get_rag_engine(document_id)
     try:
         await rag_engine.initialize_storages()
@@ -87,24 +81,6 @@ async def process_text_into_knowledge_graph(text: str, document_id: int):
 
 async def generate_quiz_from_rag(document_id: int, num_questions: int = 10, difficulty: str ="MEDIUM"):
     difficulty = difficulty.upper()
-    # prompt = f"""[Lý thuyết, khái niệm, định nghĩa, đặc điểm, nội dung bài học, thuật toán, code]
-    
-    # Dựa trên tài liệu, hãy tạo ra {num_questions} câu hỏi trắc nghiệm.
-    # Yêu cầu định dạng JSON BẮT BUỘC:
-    # {{
-    #   "quiz_title": "Tiêu đề bài trắc nghiệm",
-    #   "quiz_description": "Mô tả ngắn gọn",
-    #   "difficulty": "{difficulty}", 
-    #   "questions": [
-    #     {{
-    #       "content": "Nội dung câu hỏi?",
-    #       "explanation": "Giải thích chi tiết",
-    #       "options": ["Lựa chọn 1", "Lựa chọn 2", "Lựa chọn 3", "Lựa chọn 4"],
-    #       "correct_index": 0
-    #     }}
-    #   ]
-    # }}
-    # Lưu ý: Không thêm tiền tố A, B, C, D vào các lựa chọn."""
 
     prompt = f"""[Theory, concepts, definitions, characteristics, lesson content, algorithms, code]
     
@@ -145,29 +121,69 @@ async def generate_quiz_from_rag(document_id: int, num_questions: int = 10, diff
         raise HTTPException(status_code=500, detail="Internal ERROR when creating Quiz.")
     
 async def generate_summary_from_rag(document_id: int):
-
-    universal_query = "Introduction, Overview, Main Concepts, Important Data, Core Content, Conclusion, Summary."
-
-    llm_instruction = """
-    Task: Based on the retrieved context, summarize the document.
-    Format requirements:
-    1. Strictly use Markdown.
-    2. Use '##' for headings.
-    3. Use '-' for bullets.
+    query = """
+    A comprehensive overview and synthesis of the document's main arguments, 
+    core methodology, significant findings, and concluding insights. 
+    Search for the most semantically rich segments that define the overall purpose.
     """
 
-    prompt = f"{universal_query}\n\n{llm_instruction}"
+    # 2. Chỉ dẫn cách AI "múa bút" (Instruction)
+    llm_instruction = """
+    Role: Senior Research Analyst.
+    Task: Synthesize a high-level Executive Summary.
+
+    Structure:
+    - ## Executive Overview: A brief 2-3 sentence introduction.
+    - ## Key Pillars & Findings: Use bullet points to highlight the most critical insights.
+    - ## Final Synthesis: A concluding paragraph on the document's overall impact or takeaway.
+
+    Tone: Professional, academic, and objective. 
+    Language: English.
+    """
+
     rag_engine = get_rag_engine(document_id)
     await rag_engine.initialize_storages()
 
-    result = await rag_engine.aquery(prompt, param=QueryParam(mode="naive"))
-    clean_markdown = result.strip()
+    try:
+        result = await rag_engine.aquery(
+            query, 
+            param=QueryParam(
+                mode="hybrid",         
+                top_k=20,               
+                response_type=llm_instruction,
+                only_need_context=False,
+                enable_rerank=False
+            )
+        )
+    except Exception as e:
+        print(f"Primary query error: {e}")
+        result = None
 
+    # Fallback: Nếu kết quả rỗng hoặc báo "No relevant"
+    if not result or "No relevant" in str(result):
+        print(f"Switching to Naive mode fallback for document: {document_id}")
+        
+        result = await rag_engine.aquery(
+            " ", 
+            param=QueryParam(
+                mode="naive", 
+                top_k=5,
+                response_type=llm_instruction
+            )
+        )
+        
+    if result is None:
+        print("Lỗi: AI không trả về kết quả sau khi fallback.")
+        return "Sorry, I couldn't generate a summary because the AI service failed."
+
+  
+    clean_markdown = str(result).strip()
     clean_markdown = re.sub(r"(?i)^```markdown\n", "", clean_markdown) 
     clean_markdown = re.sub(r"^```\n", "", clean_markdown)
     clean_markdown = re.sub(r"\n```$", "", clean_markdown)
 
     return clean_markdown
+   
 
 
 
