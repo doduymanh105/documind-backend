@@ -108,6 +108,7 @@ class Essay(Base):
     document_id = Column(BigInteger, ForeignKey("user_documents.document_id", ondelete="CASCADE"))
     essay_title = Column(String(255), nullable=False)
     quick_explanation = Column(Text, nullable=True)
+    essay_content = Column(Text, nullable=False)
     max_grade = Column(Float, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     # Relationships
@@ -158,6 +159,11 @@ class UserEssayAnswer(Base):
     essay_id = Column(BigInteger, ForeignKey("essays.essay_id", ondelete="CASCADE"))
     text_answer = Column(Text, nullable=True)
     score_obtained = Column(Float, nullable=True)
+
+    feedb_strength = Column(Text, nullable=True)
+    pointforgrow = Column(Text, nullable=True)
+    suggest_enhancemance = Column(Text, nullable=True)
+
     ai_feedback = Column(Text, nullable=True)
 
     # Relationships

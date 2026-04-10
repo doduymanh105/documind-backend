@@ -127,7 +127,6 @@ async def generate_summary_from_rag(document_id: int):
     Search for the most semantically rich segments that define the overall purpose.
     """
 
-    # 2. Chỉ dẫn cách AI "múa bút" (Instruction)
     llm_instruction = """
     Role: Senior Research Analyst.
     Task: Synthesize a high-level Executive Summary.
@@ -183,7 +182,66 @@ async def generate_summary_from_rag(document_id: int):
     clean_markdown = re.sub(r"\n```$", "", clean_markdown)
 
     return clean_markdown
-   
+
+
+async def generate_single_essay_question(document_id: int):
+    query = "What is the most central and complex topic in this document that would be suitable for an academic essay?"
+
+    llm_instruction = """
+    Role: Senior University Professor.
+    Task: Create EXACTLY ONE high-quality essay assignment based on the provided context.
+    
+    Structure your response as a JSON object:
+    - 'essay_title': A professional academic title.
+    - 'quick_explanation': A 1-sentence summary of the essay's core objective.
+    - 'essay_content': The actual detailed essay prompt/question.
+    - 'max_grade': 0.0
+
+    Return ONLY the JSON object.
+    """
+
+    rag_engine = get_rag_engine(document_id)
+    await rag_engine.initialize_storages()
+
+    try:
+        result = await rag_engine.aquery(
+            query, 
+            param=QueryParam(
+                mode="hybrid", 
+                response_type=llm_instruction,
+                enable_rerank=False
+            )
+        )
+        
+        import json, re
+        json_match = re.search(r'\{.*\}', result, re.DOTALL)
+        if json_match:
+            return json.loads(json_match.group(0))
+        return None
+    except Exception as e:
+        print(f"RAG Error: {e}")
+        return None
+    
+async def evaluate_essay_submission(essay_question: str, user_answer: str, context: str):
+    prompt = f"""
+    Role: Academic Professor.
+    Context: {context}
+    Question: {essay_question}
+    Student Answer: {user_answer}
+    
+    Task: Grade the essay (0-100) and provide structured feedback.
+    
+    Return ONLY a JSON object:
+    {{
+      "score": float,
+      "strengths": "A SINGLE STRING with Markdown bullet points (e.g., '- Point 1\\n- Point 2')",
+      "growth_points": "A SINGLE STRING with Markdown bullet points",
+      "enhancement": "A detailed Markdown section including specific advice and some rewritten sentence to enhance the point."
+    }}
+    """
+    
+    result = await openai_llm_complete(prompt)
+    return json.loads(re.search(r'\{.*\}', result, re.DOTALL).group(0))
 
 
 

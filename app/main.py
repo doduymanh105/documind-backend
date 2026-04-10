@@ -4,6 +4,7 @@ from app.models import models
 from app.api.auth import router as auth_router
 from app.api.document import router as document_router
 from app.api.quiz import router as quiz_router
+from app.api.essay import router as essay_router
 import torch
 import torch.nn as nn
 import sys
@@ -30,6 +31,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(document_router)
 app.include_router(quiz_router)
+app.include_router(essay_router)
 
 @app.get("/")
 def root():

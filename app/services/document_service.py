@@ -32,15 +32,43 @@ class DocumentService:
     @staticmethod
     def get_history_union(db: Session, document_id: int, limit: int = None):
         limit_query = f"LIMIT {limit}" if limit else ""
+        
         query = text(f"""
-            SELECT 'QUIZ' as type, created_at, 'COMPLETED' as status, q.quiz_id as id FROM quizzes q WHERE document_id = :doc_id
+            SELECT 
+                'QUIZ' as type, 
+                title as name,   -- Giả sử bảng quizzes có cột quiz_title
+                created_at, 
+                'COMPLETED' as status, 
+                q.quiz_id as id 
+            FROM quizzes q 
+            WHERE document_id = :doc_id
+            
             UNION ALL
-            SELECT 'ESSAY' as type, created_at, 'COMPLETED' as status, e.essay_id as id FROM essays e WHERE document_id = :doc_id
+            
+            SELECT 
+                'ESSAY' as type, 
+                essay_title as name,  -- Giả sử bảng essays có cột essay_title
+                created_at, 
+                'COMPLETED' as status, 
+                e.essay_id as id 
+            FROM essays e 
+            WHERE document_id = :doc_id
+            
             UNION ALL
-            SELECT 'MINDMAP' as type, created_at, 'COMPLETED' as status, m.mindmap_id as id FROM mindmaps m WHERE document_id = :doc_id
+            
+            SELECT 
+                'MINDMAP' as type, 
+                title as name,        -- Giả sử bảng mindmaps có cột title
+                created_at, 
+                'COMPLETED' as status, 
+                m.mindmap_id as id 
+            FROM mindmaps m 
+            WHERE document_id = :doc_id
+            
             ORDER BY created_at DESC
             {limit_query}
         """)
+    
         result = db.execute(query, {"doc_id": document_id}).fetchall()
         return [dict(row._mapping) for row in result]
 
