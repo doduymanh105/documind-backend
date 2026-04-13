@@ -7,6 +7,7 @@ from app.schemas.quiz_schemas import QuizDetailResponse, QuizSubmitResponse, Qui
 from app.api.auth import get_current_user
 from app.database import get_db
 from app.services.quiz_service import QuizService
+from app.models import models
 
 
 router = APIRouter(prefix="/quizzes", tags=["Quizzes"])
@@ -155,6 +156,63 @@ def get_quiz_attempts(
         "attempt_count": len(attempts),
         "attempts" : attempts
     }
+
+
+@router.get("/{quiz_id}/attempts/{attempt_id}")
+def get_quiz_attempt_detail(
+    quiz_id: int,
+    attempt_id: int, 
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    attempt = db.query(models.QuizAttempt).options(
+        joinedload(models.QuizAttempt.quiz)
+    ).filter(
+        models.QuizAttempt.attempt_id == attempt_id,
+        models.QuizAttempt.quiz_id == quiz_id,
+        models.QuizAttempt.user_id == current_user.user_id
+    ).first()
+
+    if not attempt:
+        raise HTTPException(status_code=404, detail="Attempt not found")
+    
+    user_answers = db.query(models.UserAnswer).filter(
+        models.UserAnswer.attempt_id == attempt_id
+    ).all()
+
+    detailed_answers = []
+    for ua in user_answers:
+        question = db.query(models.Question).options(
+            joinedload(models.Question.options)
+        ).filter(models.Question.question_id == ua.question_id).first()
+
+        if question:
+            correct_opt = next((o for o in question.options if o.is_correct), None)
+
+            detailed_answers.append({
+                "question_id": question.question_id,
+                "question_content": question.content,
+                "question_type": question.question_type,
+                "selected_option_id": ua.selected_option_id,
+                "is_correct": ua.selected_option_id == correct_opt.option_id if correct_opt else False,
+                "options": [
+                    {
+                        "option_id": o.option_id,
+                        "content": o.content,
+                        "is_correct": o.is_correct
+                    } for o in question.options
+                ]
+            })
+    return {
+        "attempt_id": attempt.attempt_id,
+        "quiz_title": attempt.quiz.title if attempt.quiz else "Quiz",
+        "score": attempt.score,
+        "status": attempt.status,
+        "answers": detailed_answers
+    }
+
+
+
     
 
 def quiz_validate(quiz_id: int, db: Session,current_user: User):

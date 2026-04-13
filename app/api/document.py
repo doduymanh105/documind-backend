@@ -17,10 +17,16 @@ from app.services.quiz_service import QuizService
 from app.core.rag import process_text_into_knowledge_graph, generate_quiz_from_rag, generate_summary_from_rag
 from app.api.auth import get_current_user
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+UPLOAD_DIR = os.path.join(BASE_DIR, "upload")
+
+if not os.path.exists(UPLOAD_DIR):
+    os.makedirs(UPLOAD_DIR)
+
 router = APIRouter(prefix="/documents", tags=["Documents"])
 
-UPLOAD_DIR = "upload"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# UPLOAD_DIR = "upload"
+# os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 def extract_text_from_pdf(file_path: str) -> str:
     text=""
@@ -157,11 +163,19 @@ async def view_document(document_id: int, db: Session = Depends(get_db), current
     if not os.path.exists(doc.document_url):
         raise HTTPException(status_code=404, detail="Physical file in the system not found")
     
+    file_path = os.path.abspath(doc.document_url)
+    print(f"DEBUG: Server is looking for file at: {file_path}")
+    
     doc.last_accessed_at = datetime.now()
     db.commit()
+    if not os.path.exists(file_path):
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Physical file not found. Server checked: {file_path}"
+        )
     
     return FileResponse(
-        path = doc.document_url,
+        path=file_path,
         media_type="application/pdf",
         filename=doc.file_name,
         content_disposition_type="inline"

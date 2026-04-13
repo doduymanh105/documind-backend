@@ -92,3 +92,24 @@ class Attempt_item(BaseModel):
 class QuizAttemptResponse(BaseModel):
     attempt_count: int
     attempts: List[Attempt_item]
+
+
+class OptionSimple(BaseModel):
+    option_id: int
+    content: str
+    is_correct: bool
+
+class UserAnswerDetail(BaseModel):
+    question_id: int
+    question_content: str
+    question_type: str
+    options: List[OptionSimple]
+    selected_option_id: Optional[int]
+    is_correct: bool
+
+class QuizAttemptDetailResponse(BaseModel):
+    attempt_id: int
+    quiz_title: str
+    score: Optional[float]
+    status: str
+    answers: List[UserAnswerDetail]

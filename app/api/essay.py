@@ -10,6 +10,8 @@ from app.core.rag import get_rag_engine, evaluate_essay_submission
 from app.core.rag import QueryParam 
 from datetime import datetime
 from app.models.models import User
+from app.schemas.essay_schemas import EssayAttemptListResponse, EssayAttemptDetailResponse
+from typing import List
 
 router = APIRouter(
     prefix="/essays",
@@ -184,3 +186,61 @@ async def submit_essay(
             "enhancement": eval_res['enhancement']
         }
     }
+
+
+@router.get("/{essay_id}/attempts", response_model=List[EssayAttemptListResponse])
+def get_essay_attempts (
+    essay_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    essay_exists = db.query(models.Essay).filter(models.Essay.essay_id == essay_id).first()
+    if not essay_exists:
+        raise HTTPException(status_code=404, detail="Essay not found")
+    
+    attempts = db.query(models.QuizAttempt).filter(
+        models.QuizAttempt.essay_id == essay_id,
+        models.QuizAttempt.user_id == current_user.user_id
+    ).order_by(models.QuizAttempt.started_at.desc()).all()
+
+    return attempts
+
+
+@router.get("/{essay_id}/attempts/{attempt_id}", response_model=EssayAttemptDetailResponse)
+def get_essay_attempt_detail (
+    essay_id: int,
+    attempt_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    essay_exists = db.query(models.Essay).filter(models.Essay.essay_id == essay_id).first()
+    if not essay_exists:
+        raise HTTPException(status_code=404, detail="Essay not found")
+
+    attempt = db.query(models.QuizAttempt).filter(
+        models.QuizAttempt.attempt_id == attempt_id,
+        models.QuizAttempt.user_id == current_user.user_id
+        ).first()
+    if not attempt:
+        raise HTTPException(status_code=404, detail="Attempt not found")
+    
+    answer = db.query(models.UserEssayAnswer).filter(
+        models.UserEssayAnswer.attempt_id == attempt_id
+    ).first()
+
+    return {
+        "attempt_id": attempt.attempt_id,
+        "essay_id": attempt.essay_id,
+        "score": attempt.score,
+        "status": attempt.status,
+        "started_at": attempt.started_at,
+        "completed_at": attempt.completed_at,
+        "text_answer": answer.text_answer if answer else None,
+        "feedb_strength": answer.feedb_strength if answer else None,
+        "pointforgrow": answer.pointforgrow if answer else None,
+        "suggest_enhancemance": answer.suggest_enhancemance if answer else None,
+        "ai_feedback": answer.ai_feedback if answer else None
+    }
+
+
+    

@@ -1,10 +1,12 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from app.database import engine, Base
 from app.models import models
 from app.api.auth import router as auth_router
 from app.api.document import router as document_router
 from app.api.quiz import router as quiz_router
 from app.api.essay import router as essay_router
+from app.api.mindmap import router as mindmap_router
 import torch
 import torch.nn as nn
 import sys
@@ -32,6 +34,8 @@ app.include_router(auth_router)
 app.include_router(document_router)
 app.include_router(quiz_router)
 app.include_router(essay_router)
+app.include_router(mindmap_router)
+app.mount("/upload", StaticFiles(directory="upload"), name="upload")
 
 @app.get("/")
 def root():

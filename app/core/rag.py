@@ -11,11 +11,6 @@ from openai import AsyncOpenAI
 
 openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-
-
-# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-# genai.configure(api_key=GEMINI_API_KEY)
-
 BASE_STORAGE_DIR = "./lightrag_storage"
 
 
@@ -243,6 +238,57 @@ async def evaluate_essay_submission(essay_question: str, user_answer: str, conte
     result = await openai_llm_complete(prompt)
     return json.loads(re.search(r'\{.*\}', result, re.DOTALL).group(0))
 
+
+# async def generate_mindmap_from_rag(document_id: int):
+#     prompt = """
+#     Create a Mindmap in JSON format summarizing the document.
+#     Structure: {"name": "Root Topic", "children": [{"name": "Subtopic", "children": []}]}
+#     Return ONLY the JSON object, no markdown.
+#     """
+#     rag_engine = get_rag_engine(document_id)
+#     await rag_engine.initialize_storages()
+    
+#     try:
+#         result = await rag_engine.aquery(prompt, param=QueryParam(mode="naive"))
+        
+#         json_match = re.search(r'\{.*\}', result, re.DOTALL)
+#         if json_match:
+#             return json.loads(json_match.group(0))
+#         return None
+#     except Exception as e:
+#         print(f"[MINDMAP ERROR]: {e}")
+#         return None
+
+async def generate_mindmap_from_rag(document_id: int):
+    prompt = "Create a Mindmap in JSON format summarizing the main concepts of this document. Structure: {'name': '...', 'children': []}"
+    
+    rag_engine = get_rag_engine(document_id)
+    await rag_engine.initialize_storages()
+    
+    try:
+        # Hạ thấp threshold (độ tương đồng) xuống để nó chịu bốc dữ liệu
+        result = await rag_engine.aquery(
+            prompt, 
+            param=QueryParam(
+                mode="naive", 
+                # Nếu tài liệu quá ngắn, đôi khi phải ép nó lấy chunk đầu tiên
+                top_k=5,
+                # Sếp có thể thử bỏ qua threshold nếu cần
+            )
+        )
+        
+        # Log ra để sếp debug cho dễ
+        print(f"AI Output: {result}")
+
+        json_match = re.search(r'\{.*\}', result, re.DOTALL)
+        if json_match:
+            return json.loads(json_match.group(0))
+        
+        # Nếu vẫn không ra JSON, thử gọi query 1 lần nữa với prompt đơn giản hơn
+        return None
+    except Exception as e:
+        print(f"RAG Error: {e}")
+        return None
 
 
         
