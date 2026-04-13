@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Body
+from fastapi import APIRouter, Depends, HTTPException, Body, status
 from sqlalchemy.orm import Session, selectinload
 from app.database import get_db
 from app.api.auth import get_current_user
@@ -6,12 +6,40 @@ from app.models import models
 from app.core.rag import generate_mindmap_from_rag
 import json
 from app.schemas import mindmap_schemas as schemas
+from sqlalchemy import desc
 
 
 router = APIRouter(
     prefix="/mindmaps",
     tags=["Mindmaps"]
 )
+
+@router.get("/list-by-documents")
+def get_mindmaps_grouped_by_documents(
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    documents = db.query(models.UserDocument).options(
+        selectinload(models.UserDocument.mindmaps)
+    ).filter(models.UserDocument.user_id == current_user.user_id
+             ).order_by( desc(models.UserDocument.created_at)
+              ).all()
+
+    result = []
+    for doc in documents:
+        result.append({
+            "document_id": doc.document_id,
+            "file_name": doc.file_name,
+            "mindmap_count": len(doc.mindmaps),
+            "mindmaps": [
+                {
+                    "mindmap_id": m.mindmap_id,
+                    "title": m.title,
+                    "created_at": m.created_at
+                } for m in doc.mindmaps
+            ]
+        })    
+    return result
 
 @router.post("/{document_id}/mindmap", response_model=schemas.MindmapResponse)
 async def create_mindmap_api(
@@ -92,3 +120,36 @@ def update_mindmap(
         "created_at": mindmap.created_at,
         "structure_json": update_data.structure_json 
     }
+
+
+@router.delete("/{mindmap_id}", status_code=status.HTTP_200_OK)
+def delete_mindmap(
+    mindmap_id: int,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+   
+    mindmap = db.query(models.Mindmap).join(models.UserDocument).filter(
+        models.Mindmap.mindmap_id == mindmap_id,
+        models.UserDocument.user_id == current_user.user_id
+    ).first()
+
+    if not mindmap:
+        raise HTTPException(
+            status_code=404, 
+            detail="Mindmap not found or not have permission to delete!"
+        )
+
+    try:
+        db.delete(mindmap)
+        db.commit()
+        
+        return {
+            "message": f"Delete mindmap successfully: '{mindmap.title}'!",
+            "mindmap_id": mindmap_id
+        }
+    except Exception as e:
+        db.rollback()
+        print(f"[DELETE ERROR]: {e}")
+        raise HTTPException(status_code=500, detail="Error when deleting mindmap.")
+    
