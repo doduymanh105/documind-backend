@@ -60,6 +60,7 @@ class QuizItemResponse(BaseModel):
     status: str = "Completed"
     score: Optional[float] = 0.0 
     num_questions: int 
+    difficulty: str
     last_opened: Optional[datetime]
     created_at: datetime
 

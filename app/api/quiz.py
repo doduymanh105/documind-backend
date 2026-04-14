@@ -57,6 +57,7 @@ def get_quizzes(
                 "status": "Completed" if q.max_grade > 0 else "Processing",
                 "score": q.max_grade,
                 "num_questions": q_count,
+                "difficulty": q.difficulty if hasattr(q, 'difficulty') else 'MEDIUM',
                 "last_opened": q.updated_at,
                 "created_at": q.created_at
             })

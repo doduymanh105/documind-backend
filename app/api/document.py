@@ -47,6 +47,7 @@ async def upload_document(
     current_user:User = Depends(get_current_user),
     
 ):
+    domain = "https://documind-api.duckdns.org"
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Current system only support PDF format.")
     # xử lí file size 
@@ -82,7 +83,7 @@ async def upload_document(
         "documemt_id": new_document.document_id,
         "file_name": file.filename,
         "text_preview": new_document.summary,
-        "pdf_url": f"/documents/{new_document.document_id}/view"
+        "pdf_url": f"{domain}/documents/{new_document.document_id}/view"
     }
 
 async def process_document_background(text: str, document_id: int):
@@ -131,7 +132,7 @@ async def generate_quiz_and_save(
 
         existing_document = service.get_user_document(db, document_id, current_user.user_id)
 
-        quiz_data = await generate_quiz_from_rag(document_id, num_questions)
+        quiz_data = await generate_quiz_from_rag(document_id, num_questions, difficulty)
         
         if "error" in quiz_data:
             raise HTTPException(status_code=500, detail=quiz_data["error"])
@@ -144,6 +145,7 @@ async def generate_quiz_and_save(
                 "quiz_id": saved_quiz.quiz_id,
                 "document_id": document_id,
                 "title": saved_quiz.title,
+                "difficulty": saved_quiz.difficulty,
                 "num_questions": len(quiz_data.get("questions", [])),
                 "created_at": saved_quiz.created_at
             } 
