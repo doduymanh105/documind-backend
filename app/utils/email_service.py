@@ -22,8 +22,9 @@ async def send_verification_otp(email_to: str, otp: str):
         """
 
         # 2. Tạo dictionary đúng cấu trúc của Resend
+        resend_from = os.getenv("RESEND_FROM_EMAIL", "DocuMind <onboarding@resend.dev>")
         params = {
-            "from": "DocuMind <admin@duymanhdo.id.vn>", # Bắt buộc dùng email này nếu sếp chưa add domain
+            "from": resend_from,
             "to": [email_to],      
             "subject": "[DocuMind] Verification Code",
             "html": html_content

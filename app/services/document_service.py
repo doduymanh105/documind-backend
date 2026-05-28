@@ -83,6 +83,13 @@ class DocumentService:
             db.commit()
             if os.path.exists(file_path):
                 os.remove(file_path)
+            
+            # Clean up associated LightRAG storage directory
+            doc_dir = f"./lightrag_storage/doc_{doc.document_id}"
+            import shutil
+            if os.path.exists(doc_dir):
+                shutil.rmtree(doc_dir)
+                
             return True
         except Exception as e:
             db.rollback()

@@ -1,6 +1,6 @@
 import os
 import fitz
-from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, BackgroundTasks, Query, Body
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, BackgroundTasks, Query, Body, Request
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from datetime import datetime
@@ -41,13 +41,14 @@ def extract_text_from_pdf(file_path: str) -> str:
 
 @router.post("/upload", status_code=status.HTTP_201_CREATED)
 async def upload_document(
+    request: Request,
     background_tasks: BackgroundTasks = BackgroundTasks(),
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
     current_user:User = Depends(get_current_user),
     
 ):
-    domain = "https://documind-api.duckdns.org"
+    base_url = str(request.base_url).rstrip("/")
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Current system only support PDF format.")
     # xử lí file size 
@@ -83,7 +84,7 @@ async def upload_document(
         "documemt_id": new_document.document_id,
         "file_name": file.filename,
         "text_preview": new_document.summary,
-        "pdf_url": f"{domain}/documents/{new_document.document_id}/view"
+        "pdf_url": f"{base_url}/documents/{new_document.document_id}/view"
     }
 
 async def process_document_background(text: str, document_id: int):

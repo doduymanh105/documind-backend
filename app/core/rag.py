@@ -8,7 +8,9 @@ from lightrag.utils import EmbeddingFunc
 from sentence_transformers import SentenceTransformer
 from fastapi import HTTPException
 from openai import AsyncOpenAI
+from dotenv import load_dotenv
 
+load_dotenv()
 
 openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 

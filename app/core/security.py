@@ -1,9 +1,13 @@
-from passlib.context import CryptContext
+import os
 from datetime import timedelta, datetime
-from jose import jwt, JWSError
 from typing import Optional
+from jose import jwt, JWSError
+from passlib.context import CryptContext
+from dotenv import load_dotenv
 
-SECRET_KEY ="2zKF9jvTHRSRQCAhXm3wUUxHZqHZdETu2a4R99NZI1C"
+load_dotenv()
+
+SECRET_KEY = os.getenv("JWT_SECRET_KEY", "2zKF9jvTHRSRQCAhXm3wUUxHZqHZdETu2a4R99NZI1C")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

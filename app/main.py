@@ -1,3 +1,5 @@
+import os
+import sys
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from app.database import engine, Base
@@ -9,8 +11,12 @@ from app.api.essay import router as essay_router
 from app.api.mindmap import router as mindmap_router
 import torch
 import torch.nn as nn
-import sys
 from fastapi.middleware.cors import CORSMiddleware
+
+# Ensure folders exist
+os.makedirs("upload", exist_ok=True)
+os.makedirs("lightrag_storage", exist_ok=True)
+
 setattr(sys.modules['torch'], 'nn', nn)
 # python -m uvicorn app.main:app --reload
 models.Base.metadata.create_all(bind = engine)
